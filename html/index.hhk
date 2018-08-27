@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD></HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="FrameName" value="right">
+</OBJECT>
+<UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8cpp.html#a1e9b38d998b31c626320cd5e62e68fd2"><param name="Name" value="ALT_TELA"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a9a545d3c48de757421442f5cf6684329"><param name="Name" value="Colisao_Particulas"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a881372b79360763a3558fc8e505917f4"><param name="Name" value="Confere_Evento"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a72baf75a0339db0af1f334616389c2c4"><param name="Name" value="Cria_GeradorParticulas"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a529c4371f7b9cd30ce8341504e125679"><param name="Name" value="Cria_Jogo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a4a6edaa600a6983ab5884ff7a6a002af"><param name="Name" value="Cria_Objeto"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a180482ffab512d14a936fef110a303e3"><param name="Name" value="Cria_Particula"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#ad14f67fe5dfb2a1f94a397cf006cc010"><param name="Name" value="Cria_Timer"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a2fcf2b07e7bfd9a26e549b72cc8911c9"><param name="Name" value="Define_Angulo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a913815ab64b689c8e8b6f19211d0f161"><param name="Name" value="Define_Dimensoes"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#adf9ce72b5411edc8deec2eefb019c7b4"><param name="Name" value="Define_Flip"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a4498037ffb0e442128d088db42522848"><param name="Name" value="Define_Frame"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a0e31473cca4c0a52fdffad92869b898c"><param name="Name" value="Define_Fundo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a9535b2675bb1980f31d22afd65430535"><param name="Name" value="Define_Pivo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a3cc6ba4e9976324665da47f25890cd1b"><param name="Name" value="Desenha_Objeto"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#ab5e1296ec4acf23bd321e4c9b3788020"><param name="Name" value="Desenha_Particulas"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a9013094560f8f421d8d6ebca4b5e8f04"><param name="Name" value="Desenha_Retangulo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a5694cab1f18712eedec914c490dcd409"><param name="Name" value="Despausa_Timer"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#aa8d19ed39a8f68fe3da8fa464115353f"><param name="Name" value="Destroi_GeradorParticulas"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a48b5edde1419a729b6d49d90e5c67451"><param name="Name" value="Destroi_Objeto"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#aab9b6776edadfe2202e1123f44c2292e"><param name="Name" value="Destroi_Timer"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#abad2986abc59a682b67bfac363bb307b"><param name="Name" value="Encerra_Desenho"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#aa9c927474687d7cc913ef9564fc5381c"><param name="Name" value="Escrever"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a8a79c4d35502283eba439cce9860a22e"><param name="Name" value="Espera"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8cpp.html#a3b28121a8f1964c54fc1afbfe0a2ebee"><param name="Name" value="evento"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a31946b5e4bdb03b650dd5181608c0ca6"><param name="Name" value="Finaliza_Jogo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a6c93af3cad24328c8be1aede80703184"><param name="Name" value="GetEstado_Jogo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#aa2be5f490d601c8d4c2c8a4d4d4c3eae"><param name="Name" value="GetValorFloat_Objeto"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a83699a95baec0428165cea8a0076d32b"><param name="Name" value="GetValorInt_Objeto"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#abfba12d89fdd13a5a3adb641655e438a"><param name="Name" value="GetXY_Objeto"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a2f6b47b9e1f24c900ea41a77aa30c499"><param name="Name" value="Inicia_Desenho"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#add8f6efb79f1188040f7ee0eb9dba65d"><param name="Name" value="jogo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a404bf6ae5f928bf2037588bf195bc8c3"><param name="Name" value="Jogo_Rodando"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8cpp.html#af23e019e19169e2e6a32ab1ca9739119"><param name="Name" value="LARG_TELA"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8cpp.html"><param name="Name" value="main.cpp"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8cpp.html#a1e9b38d998b31c626320cd5e62e68fd2"><param name="Name" value="ALT_TELA"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8cpp.html#a3b28121a8f1964c54fc1afbfe0a2ebee"><param name="Name" value="evento"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8cpp.html#af23e019e19169e2e6a32ab1ca9739119"><param name="Name" value="LARG_TELA"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8cpp.html#a700a0caa5b70a06d1064e576f9f3cf65"><param name="Name" value="main"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8cpp.html#a58b2c7b90bb02504dd1383fff9e945f2"><param name="Name" value="meuTeclado"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8cpp.html#a700a0caa5b70a06d1064e576f9f3cf65"><param name="Name" value="main"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="main_8cpp.html#a58b2c7b90bb02504dd1383fff9e945f2"><param name="Name" value="meuTeclado"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#abcb6595bdfa1b2ca765683bbe108bb26"><param name="Name" value="Modifica_Coloracao"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#ac00e55a2f364f74d196dd85bd41eb690"><param name="Name" value="Move_GeradorParticulas"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a9d7c0e7345381391283f3839cce957b3"><param name="Name" value="Move_Objeto"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a8b2a854f6f4597f5209fd61ce6ba19cc"><param name="Name" value="Move_Particulas"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#afb36a54c70a7713a8cd2ceb95dafe270"><param name="Name" value="MudaDirecao_Particulas"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#aab171f7f0307023378432c7a3a1d83f3"><param name="Name" value="Pausa_Timer"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a957f7772d2b8cba273b7c350b9f8fc98"><param name="Name" value="Pega_Dimensoes"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a2a0d47b168c9da7b248f825fcd491032"><param name="Name" value="Pega_MouseBotao"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a7577a6f647b08ac2c60438addbab46e9"><param name="Name" value="Pega_MouseXY"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a4ac641c63f54e34f33802c4fc23e0c85"><param name="Name" value="Pega_Teclado"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html"><param name="Name" value="PIG.h"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a9a545d3c48de757421442f5cf6684329"><param name="Name" value="Colisao_Particulas"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a881372b79360763a3558fc8e505917f4"><param name="Name" value="Confere_Evento"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a72baf75a0339db0af1f334616389c2c4"><param name="Name" value="Cria_GeradorParticulas"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a529c4371f7b9cd30ce8341504e125679"><param name="Name" value="Cria_Jogo"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a4a6edaa600a6983ab5884ff7a6a002af"><param name="Name" value="Cria_Objeto"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a180482ffab512d14a936fef110a303e3"><param name="Name" value="Cria_Particula"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#ad14f67fe5dfb2a1f94a397cf006cc010"><param name="Name" value="Cria_Timer"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a2fcf2b07e7bfd9a26e549b72cc8911c9"><param name="Name" value="Define_Angulo"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a913815ab64b689c8e8b6f19211d0f161"><param name="Name" value="Define_Dimensoes"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#adf9ce72b5411edc8deec2eefb019c7b4"><param name="Name" value="Define_Flip"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a4498037ffb0e442128d088db42522848"><param name="Name" value="Define_Frame"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a0e31473cca4c0a52fdffad92869b898c"><param name="Name" value="Define_Fundo"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a9535b2675bb1980f31d22afd65430535"><param name="Name" value="Define_Pivo"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a3cc6ba4e9976324665da47f25890cd1b"><param name="Name" value="Desenha_Objeto"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#ab5e1296ec4acf23bd321e4c9b3788020"><param name="Name" value="Desenha_Particulas"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a9013094560f8f421d8d6ebca4b5e8f04"><param name="Name" value="Desenha_Retangulo"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a5694cab1f18712eedec914c490dcd409"><param name="Name" value="Despausa_Timer"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#aa8d19ed39a8f68fe3da8fa464115353f"><param name="Name" value="Destroi_GeradorParticulas"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a48b5edde1419a729b6d49d90e5c67451"><param name="Name" value="Destroi_Objeto"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#aab9b6776edadfe2202e1123f44c2292e"><param name="Name" value="Destroi_Timer"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#abad2986abc59a682b67bfac363bb307b"><param name="Name" value="Encerra_Desenho"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#aa9c927474687d7cc913ef9564fc5381c"><param name="Name" value="Escrever"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a8a79c4d35502283eba439cce9860a22e"><param name="Name" value="Espera"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a31946b5e4bdb03b650dd5181608c0ca6"><param name="Name" value="Finaliza_Jogo"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a6c93af3cad24328c8be1aede80703184"><param name="Name" value="GetEstado_Jogo"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#aa2be5f490d601c8d4c2c8a4d4d4c3eae"><param name="Name" value="GetValorFloat_Objeto"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a83699a95baec0428165cea8a0076d32b"><param name="Name" value="GetValorInt_Objeto"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#abfba12d89fdd13a5a3adb641655e438a"><param name="Name" value="GetXY_Objeto"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a2f6b47b9e1f24c900ea41a77aa30c499"><param name="Name" value="Inicia_Desenho"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#add8f6efb79f1188040f7ee0eb9dba65d"><param name="Name" value="jogo"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a404bf6ae5f928bf2037588bf195bc8c3"><param name="Name" value="Jogo_Rodando"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#abcb6595bdfa1b2ca765683bbe108bb26"><param name="Name" value="Modifica_Coloracao"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#ac00e55a2f364f74d196dd85bd41eb690"><param name="Name" value="Move_GeradorParticulas"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a9d7c0e7345381391283f3839cce957b3"><param name="Name" value="Move_Objeto"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a8b2a854f6f4597f5209fd61ce6ba19cc"><param name="Name" value="Move_Particulas"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#afb36a54c70a7713a8cd2ceb95dafe270"><param name="Name" value="MudaDirecao_Particulas"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#aab171f7f0307023378432c7a3a1d83f3"><param name="Name" value="Pausa_Timer"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a957f7772d2b8cba273b7c350b9f8fc98"><param name="Name" value="Pega_Dimensoes"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a2a0d47b168c9da7b248f825fcd491032"><param name="Name" value="Pega_MouseBotao"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a7577a6f647b08ac2c60438addbab46e9"><param name="Name" value="Pega_MouseXY"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a4ac641c63f54e34f33802c4fc23e0c85"><param name="Name" value="Pega_Teclado"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a7d5c5f1a1d396baa0134e126c5068086"><param name="Name" value="Quantidade_ParticulasAtivas"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#af5941163851010394caa8261926da67d"><param name="Name" value="Reinicia_Timer"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a88c7617e3a5d1ef2b477f4d44d4b06fe"><param name="Name" value="Salva_Screen"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a75ebaa0532188f08067fcd6b824d540b"><param name="Name" value="SetEstado_Jogo"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a4c7a8165854a8609cc794e046e6547c3"><param name="Name" value="SetValorFloat_Objeto"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a04a9926f7023b0edc6da16a8095d9f50"><param name="Name" value="SetValorInt_Objeto"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a246bd108b9b785249ef92db098b8d7a0"><param name="Name" value="Tempo_Decorrido"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a2b63de06a7dbf65f5877232f2e1fa45f"><param name="Name" value="Testa_Colisao"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a7d5c5f1a1d396baa0134e126c5068086"><param name="Name" value="Quantidade_ParticulasAtivas"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#af5941163851010394caa8261926da67d"><param name="Name" value="Reinicia_Timer"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a88c7617e3a5d1ef2b477f4d44d4b06fe"><param name="Name" value="Salva_Screen"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a75ebaa0532188f08067fcd6b824d540b"><param name="Name" value="SetEstado_Jogo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a4c7a8165854a8609cc794e046e6547c3"><param name="Name" value="SetValorFloat_Objeto"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a04a9926f7023b0edc6da16a8095d9f50"><param name="Name" value="SetValorInt_Objeto"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a246bd108b9b785249ef92db098b8d7a0"><param name="Name" value="Tempo_Decorrido"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_i_g_8h.html#a2b63de06a7dbf65f5877232f2e1fa45f"><param name="Name" value="Testa_Colisao"></OBJECT>
+</UL>
+</BODY>
+</HTML>

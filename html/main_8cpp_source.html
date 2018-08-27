@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.10"/>
+<title>PIG 3.0: Código-Fonte de main.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="piglogo.PNG"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PIG 3.0
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.10 -->
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;Principal</span></a></li>
+      <li class="current"><a href="files.html"><span>Arquivos</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;Arquivos</span></a></li>
+      <li><a href="globals.html"><span>Membros&#160;dos&#160;Arquivos</span></a></li>
+    </ul>
+  </div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_fff36246781f349f43fe34facf1b3499.html">PIG 3.0</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">main.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="main_8cpp.html">Vá para a documentação deste arquivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="main_8cpp.html#a1e9b38d998b31c626320cd5e62e68fd2">    1</a></span>&#160;<span class="preprocessor">#define ALT_TELA 600</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno"><a class="line" href="main_8cpp.html#af23e019e19169e2e6a32ab1ca9739119">    2</a></span>&#160;<span class="preprocessor">#define LARG_TELA 800</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_p_i_g_8h.html">PIG.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="main_8cpp.html#a3b28121a8f1964c54fc1afbfe0a2ebee">    8</a></span>&#160;PIG_Evento <a class="code" href="main_8cpp.html#a3b28121a8f1964c54fc1afbfe0a2ebee">evento</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="main_8cpp.html#a58b2c7b90bb02504dd1383fff9e945f2">    9</a></span>&#160;PIG_Teclado <a class="code" href="main_8cpp.html#a58b2c7b90bb02504dd1383fff9e945f2">meuTeclado</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="main_8cpp.html#a700a0caa5b70a06d1064e576f9f3cf65">   11</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a700a0caa5b70a06d1064e576f9f3cf65">main</a>( <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>* args[] )</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="_p_i_g_8h.html#a529c4371f7b9cd30ce8341504e125679">Cria_Jogo</a>(<a class="code" href="main_8cpp.html#a1e9b38d998b31c626320cd5e62e68fd2">ALT_TELA</a>,<a class="code" href="main_8cpp.html#af23e019e19169e2e6a32ab1ca9739119">LARG_TELA</a>,<span class="stringliteral">&quot;Meu Jogo&quot;</span>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="main_8cpp.html#a58b2c7b90bb02504dd1383fff9e945f2">meuTeclado</a> = <a class="code" href="_p_i_g_8h.html#a4ac641c63f54e34f33802c4fc23e0c85">Pega_Teclado</a>();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    CGeradorCaracteres::Inicia();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">while</span> (<a class="code" href="_p_i_g_8h.html#a404bf6ae5f928bf2037588bf195bc8c3">Jogo_Rodando</a>()!=0)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="main_8cpp.html#a3b28121a8f1964c54fc1afbfe0a2ebee">evento</a> = <a class="code" href="_p_i_g_8h.html#a881372b79360763a3558fc8e505917f4">Confere_Evento</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="_p_i_g_8h.html#a2f6b47b9e1f24c900ea41a77aa30c499">Inicia_Desenho</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="_p_i_g_8h.html#abad2986abc59a682b67bfac363bb307b">Encerra_Desenho</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    }</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    CGeradorCaracteres::Encerra();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="_p_i_g_8h.html#a31946b5e4bdb03b650dd5181608c0ca6">Finaliza_Jogo</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="ttc" id="_p_i_g_8h_html"><div class="ttname"><a href="_p_i_g_8h.html">PIG.h</a></div></div>
+<div class="ttc" id="_p_i_g_8h_html_a4ac641c63f54e34f33802c4fc23e0c85"><div class="ttname"><a href="_p_i_g_8h.html#a4ac641c63f54e34f33802c4fc23e0c85">Pega_Teclado</a></div><div class="ttdeci">PIG_Teclado Pega_Teclado()</div><div class="ttdef"><b>Definition:</b> <a href="_p_i_g_8h_source.html#l00107">PIG.h:107</a></div></div>
+<div class="ttc" id="main_8cpp_html_a700a0caa5b70a06d1064e576f9f3cf65"><div class="ttname"><a href="main_8cpp.html#a700a0caa5b70a06d1064e576f9f3cf65">main</a></div><div class="ttdeci">int main(int argc, char *args[])</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00011">main.cpp:11</a></div></div>
+<div class="ttc" id="main_8cpp_html_a3b28121a8f1964c54fc1afbfe0a2ebee"><div class="ttname"><a href="main_8cpp.html#a3b28121a8f1964c54fc1afbfe0a2ebee">evento</a></div><div class="ttdeci">PIG_Evento evento</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00008">main.cpp:8</a></div></div>
+<div class="ttc" id="main_8cpp_html_af23e019e19169e2e6a32ab1ca9739119"><div class="ttname"><a href="main_8cpp.html#af23e019e19169e2e6a32ab1ca9739119">LARG_TELA</a></div><div class="ttdeci">#define LARG_TELA</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00002">main.cpp:2</a></div></div>
+<div class="ttc" id="_p_i_g_8h_html_a881372b79360763a3558fc8e505917f4"><div class="ttname"><a href="_p_i_g_8h.html#a881372b79360763a3558fc8e505917f4">Confere_Evento</a></div><div class="ttdeci">PIG_Evento Confere_Evento()</div><div class="ttdef"><b>Definition:</b> <a href="_p_i_g_8h_source.html#l00095">PIG.h:95</a></div></div>
+<div class="ttc" id="_p_i_g_8h_html_a2f6b47b9e1f24c900ea41a77aa30c499"><div class="ttname"><a href="_p_i_g_8h.html#a2f6b47b9e1f24c900ea41a77aa30c499">Inicia_Desenho</a></div><div class="ttdeci">void Inicia_Desenho()</div><div class="ttdef"><b>Definition:</b> <a href="_p_i_g_8h_source.html#l00149">PIG.h:149</a></div></div>
+<div class="ttc" id="_p_i_g_8h_html_a31946b5e4bdb03b650dd5181608c0ca6"><div class="ttname"><a href="_p_i_g_8h.html#a31946b5e4bdb03b650dd5181608c0ca6">Finaliza_Jogo</a></div><div class="ttdeci">void Finaliza_Jogo()</div><div class="ttdef"><b>Definition:</b> <a href="_p_i_g_8h_source.html#l00200">PIG.h:200</a></div></div>
+<div class="ttc" id="main_8cpp_html_a58b2c7b90bb02504dd1383fff9e945f2"><div class="ttname"><a href="main_8cpp.html#a58b2c7b90bb02504dd1383fff9e945f2">meuTeclado</a></div><div class="ttdeci">PIG_Teclado meuTeclado</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00009">main.cpp:9</a></div></div>
+<div class="ttc" id="_p_i_g_8h_html_abad2986abc59a682b67bfac363bb307b"><div class="ttname"><a href="_p_i_g_8h.html#abad2986abc59a682b67bfac363bb307b">Encerra_Desenho</a></div><div class="ttdeci">void Encerra_Desenho()</div><div class="ttdef"><b>Definition:</b> <a href="_p_i_g_8h_source.html#l00165">PIG.h:165</a></div></div>
+<div class="ttc" id="_p_i_g_8h_html_a529c4371f7b9cd30ce8341504e125679"><div class="ttname"><a href="_p_i_g_8h.html#a529c4371f7b9cd30ce8341504e125679">Cria_Jogo</a></div><div class="ttdeci">void Cria_Jogo(int Largura_Janela, int Altura_Janela, char *Nome_Janela)</div><div class="ttdef"><b>Definition:</b> <a href="_p_i_g_8h_source.html#l00043">PIG.h:43</a></div></div>
+<div class="ttc" id="main_8cpp_html_a1e9b38d998b31c626320cd5e62e68fd2"><div class="ttname"><a href="main_8cpp.html#a1e9b38d998b31c626320cd5e62e68fd2">ALT_TELA</a></div><div class="ttdeci">#define ALT_TELA</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00001">main.cpp:1</a></div></div>
+<div class="ttc" id="_p_i_g_8h_html_a404bf6ae5f928bf2037588bf195bc8c3"><div class="ttname"><a href="_p_i_g_8h.html#a404bf6ae5f928bf2037588bf195bc8c3">Jogo_Rodando</a></div><div class="ttdeci">int Jogo_Rodando()</div><div class="ttdef"><b>Definition:</b> <a href="_p_i_g_8h_source.html#l00191">PIG.h:191</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.10
+</small></address>
+</body>
+</html>
