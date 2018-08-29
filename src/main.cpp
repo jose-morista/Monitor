@@ -231,13 +231,13 @@ void escreverInteiro(int num,int posx,int posy,int fnt)
 void escreverSinaisVitais()
 {
     char aux1[8],aux2[3];
-    escreverInteiro(p.sinais[HR].valor,1075,591,fntHr);
+    escreverInteiro(p.sinais[HR].valor,1225,691,fntHr);
     sprintf(aux1,"%02d/%02d",p.sinais[BP1].valor,p.sinais[BP2].valor);
-    EscreverEsquerda(aux1,1075,481,fntBp);
-    escreverInteiro(p.sinais[SPO2].valor,1075,309,fntSpo2);
-    escreverInteiro(p.sinais[RESP].valor,1075,168,fntResp);
+    EscreverEsquerda(aux1,1225,581,fntBp);
+    escreverInteiro(p.sinais[SPO2].valor,1225,409,fntSpo2);
+    escreverInteiro(p.sinais[RESP].valor,1225,268,fntResp);
     sprintf(aux2,"%d",p.sinais[TEMP].valor);
-    EscreverEsquerda(aux2,1075,32,fntTemp);
+    EscreverEsquerda(aux2,1225,132,fntTemp);
 }
 
 char* converterSegMin(int segundos)
@@ -334,7 +334,7 @@ void desenhaGrafico(Grafico *l,int posy,SDL_Color cor)
         if(abs(l->prox->x - l->x) <= 10)
         {
             DesenhaLinhaSimples(l->x,l->y+posy,l->prox->x,l->prox->y+posy,cor);
-            //DesenhaLinhaSimples(l->x,l->y+posy+1,l->prox->x,l->prox->y+posy+1,cor);
+            DesenhaLinhaSimples(l->x,l->y+posy+1,l->prox->x,l->prox->y+posy+1,cor);
             //DesenhaLinhaSimples(l->x,l->y+posy+2,l->prox->x,l->prox->y+posy+2,cor);
         }
         desenhaGrafico(l->prox,posy,cor);
@@ -369,8 +369,7 @@ Funções valores ECG
 int gerarBatimentos()
 {
     srand(time(NULL));
-    int aleat = rand(),aux;
-    aux = aleat %2;
+    int aleat = rand();
     switch(p.quadro)
     {
     case NORMAL:
@@ -403,7 +402,9 @@ void telaMonitor() {
     int miniTela = 0;
 
     p.sinais[HR].g = inicializaGrafico("normal");
+    p.quadro = NORMAL;
     p.sinais[HR].timerGrafico = CriaTimer();
+
 
     while (JogoRodando() && TELA == tMonitor) {
 
@@ -413,6 +414,7 @@ void telaMonitor() {
 
         //Tela Painel
         DesenhaObjeto(fundoPainel);
+        // EscreverEsquerda(p.nome, 100, 714, fntForm, janPainel);
         if (miniTela != 0)
           DesenhaObjeto(miniTela);
 
@@ -422,11 +424,17 @@ void telaMonitor() {
         desenhaGrafico(p.sinais[HR].g, 765, AZUL_PISCINA);
         moveGrafico(p.sinais[HR].g, p.sinais[HR].timerGrafico, 0.2, 5);
 
+        escreverSinaisVitais();
+
+        controleAgd();
+
+        gerarBatimentos();
+
         char fps[20];
         sprintf(fps,"%.0f",GetFPS());
-        EscreverEsquerda(fps,0,0,fntBp);
+        // EscreverEsquerda(fps,0,0,fntBp);
 
-        if (TempoDecorrido(timers[1]) >= 2) {
+        if (TempoDecorrido(timers[1]) >= 1) {
           SalvaTela("telaAtual.bmp");
           DestroiObjeto(miniTela);
           miniTela = CriaObjeto(".//telaAtual.bmp",0,255,janPainel);
@@ -454,7 +462,7 @@ void telaFormulario() {
   inputs[1] = criarCaixadeTexto(1174,668,40,65,3,1);
   inputs[2] = criarCaixadeTexto(1378,668,40,50,1);
   inputs[3] = criarCaixadeTexto(90,549,37,1349,50);
-  inputs[4] = criarCaixadeTexto(90,431,37,1349,50);
+  inputs[4] = criarCaixadeTexto(90,431,37,1350,50);
   inputs[5] = criarCaixadeTexto(362,356,37,70,4,1);
   inputs[6] = criarCaixadeTexto(665,356,37,134,20);
   inputs[7] = criarCaixadeTexto(448,149,151,991,100);
