@@ -74,7 +74,7 @@ Paciente p;
 int timerIniSim, timerDurSim;
 
 //Fontes
-int fntHr, fntBp, fntSpo2, fntResp, fntTemp, fntPainel, fntForm;
+int fntHr, fntBp, fntSpo2, fntResp, fntTemp, fntForm, fntPainel;
 
 /*****
 Funções de manipulção das estruturas de dados
@@ -276,7 +276,6 @@ void controleAgd()
         {
             p.quadro = filaAgd->qdr;
             ReiniciaTimer(timerDurSim);
-            printf("Quadro alterado!\n");
         }
 
         if(p.quadro == filaAgd->qdr && TempoDecorrido(timerDurSim) > filaAgd->dur)
@@ -284,7 +283,6 @@ void controleAgd()
             p.quadro = NORMAL;
             ReiniciaTimer(timerIniSim);
             filaAgd = popAgendamento(filaAgd);
-            printf("Quadro normalizado!\n");
         }
     }
 }
@@ -304,6 +302,8 @@ void desenhaBarra(int timerBarra)
         ReiniciaTimer(timerBarra);
     }
 }
+
+void imprimirFilaAgendamento();
 
 /*****
 Funções de manipulação dos gráficos
@@ -405,6 +405,20 @@ void telaMonitor() {
     p.quadro = NORMAL;
     p.sinais[HR].timerGrafico = CriaTimer();
 
+    fntPainel = CriaFonteNormal("..//fontes//Carlito.ttf", 18, CINZA, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
+    int fntPainelG = CriaFonteNormal("..//fontes//Carlito.ttf", 25, CINZA, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
+
+    int btns[6];
+
+    btns[0] = CriaObjeto("..//imagens//btns//btnAgendar.png",0,255,janPainel);
+
+    char idade[4], diasInter[10], sexo[2];
+    sprintf(idade, "%d", p.idade);
+    sprintf(diasInter, "%d", p.diasInter);
+    sprintf(sexo, "%c", p.sexo);
+
+    filaAgd = pushAgendamento(filaAgd, QD2, 2, 10);
+    filaAgd = pushAgendamento(filaAgd, QD2, 2, 10);
 
     while (JogoRodando() && TELA == tMonitor) {
 
@@ -414,7 +428,32 @@ void telaMonitor() {
 
         //Tela Painel
         DesenhaObjeto(fundoPainel);
-        // EscreverEsquerda(p.nome, 100, 714, fntForm, janPainel);
+        //Escrevendo os dados do paciente
+        EscreverEsquerda(p.nome, 160, 717, fntPainel);
+        EscreverEsquerda(idade, 160, 681, fntPainel);
+        EscreverEsquerda(diasInter, 420, 681, fntPainel);
+        EscreverEsquerda(sexo, 540, 681, fntPainel);
+        EscreverEsquerda(p.quartoLeito, 740, 681, fntPainel);
+        EscreverEsquerda(p.diagMed, 278, 642, fntPainel);
+        EscreverEsquerda(p.diagEnf, 324, 604, fntPainel);
+        EscreverEsquerda(p.evolucao, 304, 568, fntPainel);
+
+        //Escrevendo o quadro atual
+
+        switch (p.quadro) {
+          case NORMAL: {
+            EscreverEsquerda("NORMAL", 712, 375, fntPainelG);
+            break;
+          }
+          case QD2: {
+            EscreverEsquerda("QUADRO2", 712, 375, fntPainelG);
+            char *aux;
+            aux = converterSegMin(filaAgd->dur - TempoDecorrido(timerDurSim));
+            EscreverEsquerda(aux,745,260,fntPainelG);
+            break;
+          }
+        }
+
         if (miniTela != 0)
           DesenhaObjeto(miniTela);
 
@@ -517,7 +556,6 @@ int main( int argc, char* args[] ) {
     fntSpo2 = CriaFonteNormal("..//fontes//Carlito.ttf", 95, VERDE_ESCURO, 0, VERDE_ESCURO, ESTILO_NORMAL);
     fntResp = CriaFonteNormal("..//fontes//Carlito.ttf", 95, AZUL_CLARO, 0, AZUL_CLARO, ESTILO_NORMAL);
     fntTemp= CriaFonteNormal("..//fontes//Carlito.ttf", 95, LARANJA_FOSCO, 0, LARANJA_FOSCO, ESTILO_NORMAL);
-    fntPainel = CriaFonteNormal("..//fontes//Carlito.ttf", 15, CINZA_ESCURO, 0, AZUL_PISCINA, ESTILO_NEGRITO);
     fntForm = CriaFonteNormal("..//fontes//Consolas.ttf", 20, CINZA_ESCURO, 0, PRETO, ESTILO_NORMAL);
 
     while(JogoRodando()) {
