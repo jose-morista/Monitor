@@ -20,7 +20,7 @@ Definições e enumerações
 //enumeração dos sinais vitais
 enum sinaisVitais{HR, BP1, BP2, SPO2, RESP, TEMP};
 
-enum telas{tFormulario, tMonitor};
+enum telas{tFormulario, tMonitor, tEntrada};
 
 /*****
 Estruturas de dados
@@ -62,7 +62,7 @@ Variáveis globais
 PIG_Evento evento;
 PIG_Teclado meuTeclado;
 
-int TELA= tFormulario;
+int TELA= tEntrada;
 
 //Fila de agendamento
 Agendamento *filaAgd=NULL;
@@ -303,7 +303,9 @@ void desenhaBarra(int timerBarra)
     }
 }
 
-void imprimirFilaAgendamento();
+void imprimirFilaAgendamento() {
+
+};
 
 /*****
 Funções de manipulação dos gráficos
@@ -405,8 +407,8 @@ void telaMonitor() {
     p.quadro = NORMAL;
     p.sinais[HR].timerGrafico = CriaTimer();
 
-    fntPainel = CriaFonteNormal("..//fontes//Carlito.ttf", 18, CINZA, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
-    int fntPainelG = CriaFonteNormal("..//fontes//Carlito.ttf", 25, CINZA, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
+    fntPainel = CriaFonteNormal("..//fontes//Carlito.ttf", 18, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
+    int fntPainelG = CriaFonteNormal("..//fontes//Carlito.ttf", 25, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
 
     int btns[6];
 
@@ -442,11 +444,11 @@ void telaMonitor() {
 
         switch (p.quadro) {
           case NORMAL: {
-            EscreverEsquerda("NORMAL", 712, 375, fntPainelG);
+            EscreverEsquerda("NORMAL", 710, 375, fntPainelG);
             break;
           }
           case QD2: {
-            EscreverEsquerda("QUADRO2", 712, 375, fntPainelG);
+            EscreverEsquerda("BRADICARDIA", 696, 375, fntPainelG);
             char *aux;
             aux = converterSegMin(filaAgd->dur - TempoDecorrido(timerDurSim));
             EscreverEsquerda(aux,745,260,fntPainelG);
@@ -487,6 +489,27 @@ void telaMonitor() {
       EncerraDesenho();
 
     }
+}
+
+void telaEntrada() {
+  int fundoEntrada = CriaObjeto("../imagens//fundos//fundoEntrada.png",0);
+  int timerEntrada = CriaTimer();
+  float t;
+
+  while(TELA == tEntrada && JogoRodando()) {
+    evento = GetEvento();
+    t = TempoDecorrido(timerEntrada);
+    if( TempoDecorrido(timerEntrada) >= 1)
+      SetOpacidadeObjeto(fundoEntrada,255 * (1 - (t-1)/2.5));
+    if (TempoDecorrido(timerEntrada) > 3.5) {
+      DestroiTimer(timerEntrada);
+      TELA = tFormulario;
+    }
+    IniciaDesenho();
+      DesenhaObjeto(fundoEntrada);
+    EncerraDesenho();
+  }
+
 }
 
 void telaFormulario() {
@@ -556,7 +579,7 @@ int main( int argc, char* args[] ) {
     fntSpo2 = CriaFonteNormal("..//fontes//Carlito.ttf", 95, VERDE_ESCURO, 0, VERDE_ESCURO, ESTILO_NORMAL);
     fntResp = CriaFonteNormal("..//fontes//Carlito.ttf", 95, AZUL_CLARO, 0, AZUL_CLARO, ESTILO_NORMAL);
     fntTemp= CriaFonteNormal("..//fontes//Carlito.ttf", 95, LARANJA_FOSCO, 0, LARANJA_FOSCO, ESTILO_NORMAL);
-    fntForm = CriaFonteNormal("..//fontes//Consolas.ttf", 20, CINZA_ESCURO, 0, PRETO, ESTILO_NORMAL);
+    fntForm = CriaFonteNormal("..//fontes//Consolas.ttf", 20, VERMELHO, 0, PRETO, ESTILO_NORMAL);
 
     while(JogoRodando()) {
       switch (TELA) {
@@ -566,6 +589,10 @@ int main( int argc, char* args[] ) {
         }
         case tMonitor: {
           telaMonitor();
+          break;
+        }
+        case tEntrada: {
+          telaEntrada();
           break;
         }
       }
