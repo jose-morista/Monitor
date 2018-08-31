@@ -76,6 +76,9 @@ int timerIniSim, timerDurSim;
 //Fontes
 int fntHr, fntBp, fntSpo2, fntResp, fntTemp, fntForm, fntPainel;
 
+//Janelas
+int janPainel;
+
 /*****
 Funções de manipulção das estruturas de dados
 *****/
@@ -217,97 +220,6 @@ Agendamento *popAgendamento(Agendamento *l)
 }
 
 /*****
-Funções auxiliares
-*****/
-
-//Imprimir valores dos sinais vitais
-void escreverInteiro(int num,int posx,int posy,int fnt)
-{
-    char aux[5]="";
-    sprintf(aux,"%02d",num);
-    EscreverEsquerda(aux,posx,posy,fnt);
-}
-
-void escreverSinaisVitais()
-{
-    char aux1[8],aux2[3];
-    escreverInteiro(p.sinais[HR].valor,1225,691,fntHr);
-    sprintf(aux1,"%02d/%02d",p.sinais[BP1].valor,p.sinais[BP2].valor);
-    EscreverEsquerda(aux1,1225,581,fntBp);
-    escreverInteiro(p.sinais[SPO2].valor,1225,409,fntSpo2);
-    escreverInteiro(p.sinais[RESP].valor,1225,268,fntResp);
-    sprintf(aux2,"%d",p.sinais[TEMP].valor);
-    EscreverEsquerda(aux2,1225,132,fntTemp);
-}
-
-char* converterSegMin(int segundos)
-{
-    char *aux = (char*)malloc(sizeof(10));
-    int minutos=0;
-    minutos = segundos/60;
-    segundos = segundos % 60;
-    sprintf(aux,"%02d:%02d",minutos,segundos);
-    return aux;
-}
-
-int clicado(int objeto)
-{
-    if(evento.tipoEvento==EVENTO_MOUSE && evento.mouse.acao==MOUSE_PRESSIONADO && evento.mouse.botao==MOUSE_ESQUERDO)
-    {
-        int x_mouse,y_mouse,x_obj,y_obj,alt,larg;
-        x_mouse = evento.mouse.posX;
-        y_mouse = evento.mouse.posY;
-        GetXYObjeto(objeto,&x_obj,&y_obj);
-        GetDimensoesObjeto(objeto,&alt,&larg);
-        if(x_mouse >= x_obj && x_mouse <= (x_obj+larg) && y_mouse >= y_obj && y_mouse<=(y_obj+alt))
-        {
-            return 1;
-        }
-
-    }
-    return 0;
-}
-
-//Controlador de agendamentos
-void controleAgd()
-{
-    if(filaAgd!=NULL){
-        if(p.quadro==NORMAL && TempoDecorrido(timerIniSim) > filaAgd->ti)
-        {
-            p.quadro = filaAgd->qdr;
-            ReiniciaTimer(timerDurSim);
-        }
-
-        if(p.quadro == filaAgd->qdr && TempoDecorrido(timerDurSim) > filaAgd->dur)
-        {
-            p.quadro = NORMAL;
-            ReiniciaTimer(timerIniSim);
-            filaAgd = popAgendamento(filaAgd);
-        }
-    }
-}
-
-void desenhaBarra(int timerBarra)
-{
-    int x;
-    float t;
-    t = TempoDecorrido(timerBarra)/7.0;
-
-    x = (0*(1 - t)) + (930*(t));
-
-    DesenhaRetangulo(x,172,700,15,PRETO);
-
-    if(t>=1)
-    {
-        ReiniciaTimer(timerBarra);
-    }
-}
-
-void imprimirFilaAgendamento() {
-
-};
-
-/*****
 Funções de manipulação dos gráficos
 *****/
 
@@ -365,6 +277,124 @@ Grafico *inicializaGrafico(char *nomearq)
 
 
 /*****
+Funções auxiliares
+*****/
+
+//Imprimir valores dos sinais vitais
+void escreverInteiro(int num,int posx,int posy,int fnt)
+{
+    char aux[5]="";
+    sprintf(aux,"%02d",num);
+    EscreverEsquerda(aux,posx,posy,fnt);
+}
+
+void escreverSinaisVitais()
+{
+    char aux1[8],aux2[3];
+    escreverInteiro(p.sinais[HR].valor,1225,691,fntHr);
+    sprintf(aux1,"%02d/%02d",p.sinais[BP1].valor,p.sinais[BP2].valor);
+    EscreverEsquerda(aux1,1225,581,fntBp);
+    escreverInteiro(p.sinais[SPO2].valor,1225,409,fntSpo2);
+    escreverInteiro(p.sinais[RESP].valor,1225,268,fntResp);
+    sprintf(aux2,"%d",p.sinais[TEMP].valor);
+    EscreverEsquerda(aux2,1225,132,fntTemp);
+}
+
+char* converterSegMin(int segundos)
+{
+    char *aux = (char*)malloc(sizeof(10));
+    int minutos=0;
+    minutos = segundos/60;
+    segundos = segundos % 60;
+    sprintf(aux,"%02d:%02d",minutos,segundos);
+    return aux;
+}
+
+int clicado(int objeto)
+{
+    if(evento.tipoEvento==EVENTO_MOUSE && evento.mouse.acao==MOUSE_PRESSIONADO && evento.mouse.botao==MOUSE_ESQUERDO)
+    {
+        int x_mouse,y_mouse,x_obj,y_obj,alt,larg;
+        x_mouse = evento.mouse.posX;
+        y_mouse = evento.mouse.posY;
+        GetXYObjeto(objeto,&x_obj,&y_obj);
+        GetDimensoesObjeto(objeto,&alt,&larg);
+        if(x_mouse >= x_obj && x_mouse <= (x_obj+larg) && y_mouse >= y_obj && y_mouse<=(y_obj+alt))
+        {
+            return 1;
+        }
+
+    }
+    return 0;
+}
+
+void controleGraficos() {
+  switch(p.quadro) {
+    case NORMAL: {
+      p.sinais[HR].g = inicializaGrafico("normal");
+      break;
+    }
+    case QD2: {
+      p.sinais[HR].g = inicializaGrafico("bradicardia");
+      break;
+    }
+  }
+}
+
+//Controlador de agendamentos
+void controleAgd()
+{
+    if(filaAgd!=NULL){
+        if(p.quadro==NORMAL && TempoDecorrido(timerIniSim) > filaAgd->ti)
+        {
+            p.quadro = filaAgd->qdr;
+            ReiniciaTimer(timerDurSim);
+            controleGraficos();
+        }
+
+        if(p.quadro == filaAgd->qdr && TempoDecorrido(timerDurSim) > filaAgd->dur)
+        {
+            p.quadro = NORMAL;
+            ReiniciaTimer(timerIniSim);
+            filaAgd = popAgendamento(filaAgd);
+            controleGraficos();
+        }
+    }
+}
+
+void desenhaBarra(int timerBarra)
+{
+    int x;
+    float t;
+    t = TempoDecorrido(timerBarra)/7.0;
+
+    x = (0*(1 - t)) + (930*(t));
+
+    DesenhaRetangulo(x,172,700,15,PRETO);
+
+    if(t>=1)
+    {
+        ReiniciaTimer(timerBarra);
+    }
+}
+
+void imprimirFilaAgendamento() {
+  Agendamento * aux = filaAgd;
+
+  int numAgd = 0;
+
+  while (aux!=NULL) {
+    char agd[20];
+    sprintf(agd, "%s %s %s", "Bradicardia", converterSegMin(aux->ti), converterSegMin(aux->dur));
+    EscreverEsquerda(agd, 1063, (730-(numAgd * 35)), fntPainel);
+    DesenhaLinhaSimples(1053,(730 -(numAgd * 35) - 8), 1465,(730-(numAgd * 35) - 8), PRETO, janPainel);
+    numAgd++;
+    aux = aux->prox;
+  }
+
+};
+
+/*****
 Funções valores ECG
 *****/
 
@@ -387,15 +417,43 @@ int gerarBatimentos()
     }
 }
 
+void controlePainelAgendamento( int *dur, int *ini, int *btns) {
+  int tDuracao, tInicio;
+  if (clicado(btns[0])) {
+    tDuracao = *dur;
+    tInicio = *ini;
+    filaAgd = pushAgendamento(filaAgd, QD2, tInicio, tDuracao);
+    printf("Quadro agendado!\n");
+    *dur = 0;
+    *ini = 0;
+  } else if (clicado(btns[1])) {
+    *ini = (*ini) + 30;
+  } else if (clicado(btns[2])) {
+    *ini = (*ini) - 30;
+    tInicio = *ini;
+    if( tInicio <= 0) {
+      *ini = 0;
+    }
+  } else if (clicado(btns[3])) {
+    *dur = (*dur) + 30;
+  } else if (clicado(btns[4])) {
+    *dur = (*dur) - 30;
+    tDuracao = *dur;
+    if( tDuracao <= 0) {
+      *dur = 0;
+    }
+  }
+}
+
 /*****
 Funções de exibição de telas e janelas
 *****/
 
 void telaMonitor() {
-    int janPainel = CriaJanela("Painel", ALT_TELA, LARG_TELA);
+    janPainel = CriaJanela("Painel", ALT_TELA, LARG_TELA);
     GanhaFocoJanela(0);
 
-    int timers[2];
+    int timers[2], i;
     timers[0] = CriaTimer();
     timers[1] = CriaTimer();
 
@@ -410,17 +468,27 @@ void telaMonitor() {
     fntPainel = CriaFonteNormal("..//fontes//Carlito.ttf", 18, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
     int fntPainelG = CriaFonteNormal("..//fontes//Carlito.ttf", 25, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
 
-    int btns[6];
+    int btns[5], tInicio = 0, tDuracao = 0;
 
     btns[0] = CriaObjeto("..//imagens//btns//btnAgendar.png",0,255,janPainel);
+    MoveObjeto(btns[0], 824, 56);
+    btns[1] = CriaObjeto("..//imagens//btns//btnMais.png",0,255,janPainel);
+    MoveObjeto(btns[1], 305, 80);
+    btns[2] = CriaObjeto("..//imagens//btns//btnMenos.png",0,255,janPainel);
+    MoveObjeto(btns[2], 337, 80);
+    btns[3] = CriaObjeto("..//imagens//btns//btnMais.png",0,255,janPainel);
+    MoveObjeto(btns[3], 585, 80);
+    btns[4] = CriaObjeto("..//imagens//btns//btnMenos.png",0,255,janPainel);
+    MoveObjeto(btns[4], 617, 80);
 
     char idade[4], diasInter[10], sexo[2];
     sprintf(idade, "%d", p.idade);
     sprintf(diasInter, "%d", p.diasInter);
     sprintf(sexo, "%c", p.sexo);
 
-    filaAgd = pushAgendamento(filaAgd, QD2, 2, 10);
-    filaAgd = pushAgendamento(filaAgd, QD2, 2, 10);
+    //Criação dos timers
+    timerIniSim = CriaTimer();
+    timerDurSim = CriaTimer();
 
     while (JogoRodando() && TELA == tMonitor) {
 
@@ -429,7 +497,9 @@ void telaMonitor() {
       IniciaDesenho();
 
         //Tela Painel
+
         DesenhaObjeto(fundoPainel);
+
         //Escrevendo os dados do paciente
         EscreverEsquerda(p.nome, 160, 717, fntPainel);
         EscreverEsquerda(idade, 160, 681, fntPainel);
@@ -440,15 +510,28 @@ void telaMonitor() {
         EscreverEsquerda(p.diagEnf, 324, 604, fntPainel);
         EscreverEsquerda(p.evolucao, 304, 568, fntPainel);
 
-        //Escrevendo o quadro atual
+        //Painel Fila de agendamento
+        imprimirFilaAgendamento();
 
+        // Painel de agendamento
+        for (i=0; i < 5; i++) {
+          DesenhaObjeto(btns[i]);
+        }
+        controlePainelAgendamento(&tDuracao, &tInicio, btns);
+        char *dur, *ini;
+        dur = converterSegMin(tDuracao);
+        ini = converterSegMin(tInicio);
+        EscreverEsquerda(dur,528,85,fntPainel);
+        EscreverEsquerda(ini,243,85,fntPainel);
+
+        //Painel quadro atual
         switch (p.quadro) {
           case NORMAL: {
-            EscreverEsquerda("NORMAL", 710, 375, fntPainelG);
+            EscreverEsquerda("Normal", 710, 375, fntPainelG);
             break;
           }
           case QD2: {
-            EscreverEsquerda("BRADICARDIA", 696, 375, fntPainelG);
+            EscreverEsquerda("Bradicardia", 696, 375, fntPainelG);
             char *aux;
             aux = converterSegMin(filaAgd->dur - TempoDecorrido(timerDurSim));
             EscreverEsquerda(aux,745,260,fntPainelG);
@@ -456,6 +539,7 @@ void telaMonitor() {
           }
         }
 
+        //Painel monitoramento
         if (miniTela != 0)
           DesenhaObjeto(miniTela);
 
@@ -473,9 +557,9 @@ void telaMonitor() {
 
         char fps[20];
         sprintf(fps,"%.0f",GetFPS());
-        // EscreverEsquerda(fps,0,0,fntBp);
+        EscreverEsquerda(fps,0,0,fntBp);
 
-        if (TempoDecorrido(timers[1]) >= 1) {
+        if (TempoDecorrido(timers[1]) >= 0.5) {
           SalvaTela("telaAtual.bmp");
           DestroiObjeto(miniTela);
           miniTela = CriaObjeto(".//telaAtual.bmp",0,255,janPainel);
@@ -568,10 +652,6 @@ int main( int argc, char* args[] ) {
     CriaJogo("Monitor ECG",0,ALT_TELA,LARG_TELA);
 
     meuTeclado = GetTeclado();
-
-    //Criação dos timers
-    timerIniSim = CriaTimer();
-    timerDurSim = CriaTimer();
 
     //Criação das fontes
     fntHr = CriaFonteNormal("..//fontes//Carlito.ttf", 120, AZUL_PISCINA, 0, AZUL_PISCINA, ESTILO_NORMAL);
