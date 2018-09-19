@@ -422,10 +422,14 @@ void controlePainelAgendamento( int *dur, int *ini, int *btns) {
   if (clicado(btns[0])) {
     tDuracao = *dur;
     tInicio = *ini;
+    if ( filaAgd==NULL ) {
+      ReiniciaTimer(timerIniSim);
+    }
     filaAgd = pushAgendamento(filaAgd, QD2, tInicio, tDuracao);
     printf("Quadro agendado!\n");
     *dur = 0;
     *ini = 0;
+    ReiniciaTimer(timerIniSim);
   } else if (clicado(btns[1])) {
     *ini = (*ini) + 30;
   } else if (clicado(btns[2])) {
@@ -462,7 +466,13 @@ void telaMonitor() {
     int miniTela = 0;
 
     p.sinais[HR].g = inicializaGrafico("normal");
+    p.sinais[BP1].valor = 120;
+    p.sinais[BP2].valor = 80;
+    p.sinais[SPO2].valor = 95;
+    p.sinais[RESP].valor= 20;
+    p.sinais[TEMP].valor= 37;
     p.quadro = NORMAL;
+
     p.sinais[HR].timerGrafico = CriaTimer();
 
     fntPainel = CriaFonteNormal("..//fontes//Carlito.ttf", 18, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
@@ -547,7 +557,7 @@ void telaMonitor() {
         DesenhaObjeto(fundoMonitor);
 
         desenhaGrafico(p.sinais[HR].g, 765, AZUL_PISCINA);
-        moveGrafico(p.sinais[HR].g, p.sinais[HR].timerGrafico, 0.2, 5);
+        moveGrafico(p.sinais[HR].g, p.sinais[HR].timerGrafico, 0.3, 5);
 
         escreverSinaisVitais();
 
@@ -555,9 +565,9 @@ void telaMonitor() {
 
         gerarBatimentos();
 
-        char fps[20];
-        sprintf(fps,"%.0f",GetFPS());
-        EscreverEsquerda(fps,0,0,fntBp);
+        //char fps[20];
+        //sprintf(fps,"%.0f",GetFPS());
+        //EscreverEsquerda(fps,0,0,fntBp);
 
         if (TempoDecorrido(timers[1]) >= 0.5) {
           SalvaTela("telaAtual.bmp");
