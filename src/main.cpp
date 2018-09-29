@@ -10,12 +10,13 @@ Definições e enumerações
 #define VERDE_ESCURO ((PIG_Cor){35,140,0,255})
 #define AZUL_CLARO ((PIG_Cor){0,178,178,255})
 #define LARANJA_FOSCO ((PIG_Cor){140,70,0,255})
-#define CINZA_ESCURO ((PIG_Cor){49,49,64,255})
-#define CINZA_CLARO ((PIG_Cor) {240,240,225,255})
+#define CINZA_ESCURO ((PIG_Cor){49,49,49,255})
+#define CINZA_CLARO ((PIG_Cor) {240,240,240,255})
 
 //Definições dos possíveis quadros
-#define NORMAL 1
-#define QD2 2
+#define NORMAL 0
+#define BRAD 1
+#define TAQU 2
 
 //enumeração dos sinais vitais
 enum sinaisVitais{HR, BP1, BP2, SPO2, RESP, TEMP};
@@ -26,29 +27,29 @@ enum telas{tFormulario, tMonitor, tEntrada};
 Estruturas de dados
 *****/
 
-typedef struct CaixadeTexto
-{
+typedef struct CaixadeTexto {
   int x, y, alt, larg, sel, tamMax, numerico;
   char *texto;
 }CaixadeTexto;
 
 
-typedef struct agendamento{
+typedef struct agendamento {
   int qdr, ti, dur;
+  char nomeQdr[20];
   struct agendamento *prox;
 }Agendamento;
 
-typedef struct grafico{
+typedef struct grafico {
   int x, y;
   struct grafico *prox;
 } Grafico;
 
-typedef struct sinalVital{
+typedef struct sinalVital {
   int valor, timerGrafico;
   Grafico *g;
 }sinalVital;
 
-typedef struct Paciente{
+typedef struct Paciente {
   char nome[50], diagMed[50], diagEnf[50], quartoLeito[20], sexo, evolucao[100];
   int idade, diasInter;
   int quadro;
@@ -79,13 +80,18 @@ int fntHr, fntBp, fntSpo2, fntResp, fntTemp, fntForm, fntPainel;
 //Janelas
 int janPainel;
 
+//Audios
+int sons[5];
+
+//Variáveis de controle
+int popupOpen = 0;
+
 /*****
 Funções de manipulção das estruturas de dados
 *****/
 
 
-CaixadeTexto *criarCaixadeTexto(int x,int y,int alt,int larg,int tamMax, int numerico = 0)
-{
+CaixadeTexto *criarCaixadeTexto(int x,int y,int alt,int larg,int tamMax, int numerico = 0) {
   CaixadeTexto *novo = (CaixadeTexto*)malloc(sizeof(CaixadeTexto));
   novo->x=x;
   novo->y=y;
@@ -94,77 +100,66 @@ CaixadeTexto *criarCaixadeTexto(int x,int y,int alt,int larg,int tamMax, int num
   novo->sel=0;
   novo->numerico=numerico;
   novo->tamMax=tamMax;
-  novo->texto="";
+  novo->texto= "";
   return novo;
 }
 
-int CaixadeTextoClicada(int x,int y,int alt,int larg)
-{
-    int x_mouse=evento.mouse.posX;
-    int y_mouse=evento.mouse.posY;
-    if(x_mouse >= x && x_mouse <= (x+larg) && y_mouse >= y && y_mouse<=(y+alt))
-        {
-            return 1;
-        }
-    return 0;
+int CaixadeTextoClicada(int x,int y,int alt,int larg) {
+  int x_mouse=evento.mouse.posX;
+  int y_mouse=evento.mouse.posY;
+  if (x_mouse >= x && x_mouse <= (x+larg) && y_mouse >= y && y_mouse<=(y+alt)) {
+    return 1;
+  }
+  return 0;
 }
 
-void selecionarCaixadeTexto(CaixadeTexto **inputs, int numInputs)
-{
-  if(evento.mouse.acao==MOUSE_PRESSIONADO && evento.mouse.botao==MOUSE_ESQUERDO)
-    {
-      int i;
-      for(i=0;i<numInputs;i++)
-        {
-          inputs[i]->sel = CaixadeTextoClicada(inputs[i]->x,inputs[i]->y,inputs[i]->alt,inputs[i]->larg);
-        }
+void selecionarCaixadeTexto(CaixadeTexto **inputs, int numInputs) {
+  if (evento.mouse.acao==MOUSE_PRESSIONADO && evento.mouse.botao==MOUSE_ESQUERDO) {
+    int i;
+    for (i=0;i<numInputs;i++) {
+      inputs[i]->sel = CaixadeTextoClicada(inputs[i]->x,inputs[i]->y,inputs[i]->alt,inputs[i]->larg);
     }
+  }
 }
 
-char *getinput(CaixadeTexto *input)
-{
-    char *texto = (char*)malloc(sizeof(char)*input->tamMax);
-    sprintf(texto,"");
-    if(input->texto!=NULL)
-    {
-        sprintf(texto,"%s",input->texto);
-        free(input->texto);
+char *getinput(CaixadeTexto *input) {
+  char *texto = (char*)malloc(sizeof(char)*input->tamMax);
+  sprintf(texto,"");
+  if (input->texto!=NULL) {
+    sprintf(texto,"%s",input->texto);
+    free(input->texto);
+  }
+  if (evento.tipoEvento==EVENTO_TECLADO & evento.teclado.acao==TECLA_PRESSIONADA) {
+    int i = evento.teclado.tecla;
+    if (strlen(texto)<input->tamMax) {
+      if (i>=TECLA_a && i<=TECLA_z && !input->numerico) {
+        i =i + 'a' - TECLA_a;
+        sprintf(texto,"%s%c",texto,i);
+      } else if (i==TECLA_BARRAESPACO && !input->numerico) {
+        sprintf(texto,"%s ",texto);
+      } else if (i>=TECLA_1 && i<= TECLA_0) {
+        if (i!= TECLA_0)
+          i =i - TECLA_1 + '0' +1;
+        else
+          i= 48;
+        sprintf(texto,"%s%c",texto,i);
+      } else if (i>=TECLA_KP_1 && i<= TECLA_KP_0) {
+          if(i!= TECLA_KP_0)
+            i =i - TECLA_KP_1 + '0' +1;
+          else
+            i= 48;
+          sprintf(texto,"%s%c",texto,i);
+      }
     }
-    if(evento.tipoEvento==EVENTO_TECLADO & evento.teclado.acao==TECLA_PRESSIONADA){
-                  int i = evento.teclado.tecla;
-                  if(strlen(texto)<input->tamMax){
-                  if(i>=TECLA_a && i<=TECLA_z && !input->numerico){
-                      i =i + 'a' - TECLA_a;
-                      sprintf(texto,"%s%c",texto,i);
-                  } else if(i==TECLA_BARRAESPACO && !input->numerico)
-                    {
-                        sprintf(texto,"%s ",texto);
-                    }else if(i>=TECLA_1 && i<= TECLA_0)
-                    {
-                      if( i!= TECLA_0)
-                        i =i - TECLA_1 + '0' +1;
-                      else
-                        i= 48;
-                      sprintf(texto,"%s%c",texto,i);
-                    }else if(i>=TECLA_KP_1 && i<= TECLA_KP_0)
-                    {
-                      if( i!= TECLA_KP_0)
-                        i =i - TECLA_KP_1 + '0' +1;
-                      else
-                        i= 48;
-                      sprintf(texto,"%s%c",texto,i);
-                    }
-                  }
-                  if(i==TECLA_BACKSPACE && strlen(texto)>0)
-                    {
-                        char *aux = (char*)malloc(sizeof(char)*input->tamMax);
-                        strncpy(aux,texto,(strlen(texto)-1));
-                        aux[strlen(texto)-1]='\0';
-                        strcpy(texto,aux);
-                        free(aux);
-                    }
-        }
-    return texto;
+    if (i==TECLA_BACKSPACE && strlen(texto)>0) {
+      char *aux = (char*)malloc(sizeof(char)*input->tamMax);
+      strncpy(aux,texto,(strlen(texto)-1));
+      aux[strlen(texto)-1]='\0';
+      strcpy(texto,aux);
+      free(aux);
+    }
+  }
+  return texto;
 }
 
 void desenhaCaixadeTexto(CaixadeTexto *input) {
@@ -177,68 +172,58 @@ void desenhaCaixadeTexto(CaixadeTexto *input) {
     EscreverEsquerda(input->texto,input->x+3,input->y+input->alt-30,fntForm);
 }
 
-Grafico *pushPonto(Grafico *l,int x,int y)
-{
-    if (l==NULL)
-    {
-      Grafico *novo = (Grafico*)malloc(sizeof(Grafico));
-      novo->x = x;
-      novo->y = y;
-      novo->prox=NULL;
-      return novo;
-    } else {
-      l->prox = pushPonto(l->prox,x,y);
-      return l;
-    }
+Grafico *pushPonto(Grafico *l,int x,int y) {
+  if (l==NULL) {
+    Grafico *novo = (Grafico*)malloc(sizeof(Grafico));
+    novo->x = x;
+    novo->y = y;
+    novo->prox=NULL;
+    return novo;
+  } else {
+    l->prox = pushPonto(l->prox,x,y);
+    return l;
+  }
 }
 
-Agendamento *pushAgendamento(Agendamento *l,int quadro,int tempo_ini,int duracao)
-{
-    if(l==NULL)
-    {
-        Agendamento *novo = (Agendamento*)malloc(sizeof(Agendamento));
-        novo->dur=duracao;
-        novo->ti=tempo_ini;
-        novo->qdr = quadro;
-        novo->prox = NULL;
-        return novo;
-    }else
-    {
-        l->prox = pushAgendamento(l->prox,quadro,tempo_ini,duracao);
-        return l;
-    }
+Agendamento *pushAgendamento(Agendamento *l,int quadro,int tempo_ini,int duracao, char *nomeQdr) {
+  if (l==NULL) {
+    Agendamento *novo = (Agendamento*)malloc(sizeof(Agendamento));
+    novo->dur=duracao;
+    novo->ti=tempo_ini;
+    novo->qdr = quadro;
+    sprintf(novo->nomeQdr, "%s", nomeQdr);
+    novo->prox = NULL;
+    return novo;
+  } else {
+    l->prox = pushAgendamento(l->prox,quadro,tempo_ini,duracao, nomeQdr);
+    return l;
+  }
 }
 
-Agendamento *popAgendamento(Agendamento *l)
-{
-    if(l!=NULL)
-    {
-        Agendamento *aux = l->prox;
-        free(l);
-        return aux;
-    }
+Agendamento *popAgendamento(Agendamento *l) {
+  if (l!=NULL) {
+    Agendamento *aux = l->prox;
+    free(l);
+    return aux;
+  }
 }
 
 /*****
 Funções de manipulação dos gráficos
 *****/
 
-void moveGrafico(Grafico *g,int timer,float tmp,int desloc)
-{
-    if(TempoDecorrido(timer)>tmp)
-    {
-        Grafico *aux = g;
-        while(aux!=NULL)
-        {
-            aux->x-=desloc;
-            if(aux->x<0)
-            {
-                aux->x=900-desloc;
-            }
-            aux=aux->prox;
-        }
-        ReiniciaTimer(timer);
+void moveGrafico(Grafico *g,int timer,float tmp,int desloc) {
+  if (TempoDecorrido(timer)>tmp) {
+    Grafico *aux = g;
+    while (aux!=NULL) {
+      aux->x-=desloc;
+      if (aux->x<0) {
+        aux->x=900-desloc;
+      }
+      aux=aux->prox;
     }
+    ReiniciaTimer(timer);
+  }
 }
 
 void desenhaGrafico(Grafico *l,int posy,SDL_Color cor)
@@ -329,13 +314,37 @@ int clicado(int objeto)
 }
 
 void controleGraficos() {
-  switch(p.quadro) {
+  switch (p.quadro) {
     case NORMAL: {
       p.sinais[HR].g = inicializaGrafico("normal");
       break;
     }
-    case QD2: {
+    case BRAD: {
       p.sinais[HR].g = inicializaGrafico("bradicardia");
+      break;
+    }
+    case TAQU: {
+      p.sinais[HR].g = inicializaGrafico("taquicardia");
+      break;
+    }
+  }
+}
+
+void controleSons() {
+  switch (p.quadro) {
+    case NORMAL: {
+      StopTudoAudio();
+      PlayAudio(sons[NORMAL]);
+      break;
+    }
+    case BRAD: {
+      StopTudoAudio();
+      PlayAudio(sons[BRAD]);
+      break;
+    }
+    case TAQU: {
+      StopTudoAudio();
+      PlayAudio(sons[TAQU]);
       break;
     }
   }
@@ -350,6 +359,7 @@ void controleAgd()
             p.quadro = filaAgd->qdr;
             ReiniciaTimer(timerDurSim);
             controleGraficos();
+            controleSons();
         }
 
         if(p.quadro == filaAgd->qdr && TempoDecorrido(timerDurSim) > filaAgd->dur)
@@ -358,6 +368,7 @@ void controleAgd()
             ReiniciaTimer(timerIniSim);
             filaAgd = popAgendamento(filaAgd);
             controleGraficos();
+            controleSons();
         }
     }
 }
@@ -383,9 +394,13 @@ void imprimirFilaAgendamento() {
 
   int numAgd = 0;
 
+  if(p.quadro != NORMAL) {
+    DesenhaRetangulo(1054,721,43,410,CINZA_CLARO,janPainel);
+  }
+
   while (aux!=NULL) {
     char agd[20];
-    sprintf(agd, "%s %s %s", "Bradicardia", converterSegMin(aux->ti), converterSegMin(aux->dur));
+    sprintf(agd, "%s TI: %s DUR: %s", aux->nomeQdr, converterSegMin(aux->ti), converterSegMin(aux->dur));
     EscreverEsquerda(agd, 1063, (730-(numAgd * 35)), fntPainel);
     DesenhaLinhaSimples(1053,(730 -(numAgd * 35) - 8), 1465,(730-(numAgd * 35) - 8), PRETO, janPainel);
     numAgd++;
@@ -409,15 +424,20 @@ int gerarBatimentos()
             p.sinais[HR].valor =(aleat % 40) + 60;
             break;
         }
-    case QD2 :
+    case BRAD :
         {
             p.sinais[HR].valor =(aleat % 10) + 60;
+            break;
+        }
+    case TAQU :
+        {
+            p.sinais[HR].valor =(aleat % 40) + 120;
             break;
         }
     }
 }
 
-void controlePainelAgendamento( int *dur, int *ini, int *btns) {
+void controlePainelAgendamento( int *dur, int *ini, int *btns, int *quadro, char *nomeQuadro) {
   int tDuracao, tInicio;
   if (clicado(btns[0])) {
     tDuracao = *dur;
@@ -425,8 +445,7 @@ void controlePainelAgendamento( int *dur, int *ini, int *btns) {
     if ( filaAgd==NULL ) {
       ReiniciaTimer(timerIniSim);
     }
-    filaAgd = pushAgendamento(filaAgd, QD2, tInicio, tDuracao);
-    printf("Quadro agendado!\n");
+    filaAgd = pushAgendamento(filaAgd, *quadro, tInicio, tDuracao, nomeQuadro);
     *dur = 0;
     *ini = 0;
     ReiniciaTimer(timerIniSim);
@@ -446,6 +465,19 @@ void controlePainelAgendamento( int *dur, int *ini, int *btns) {
     if( tDuracao <= 0) {
       *dur = 0;
     }
+  } else if (clicado(btns[5])) {
+    popupOpen = !popupOpen;
+  }
+  if (popupOpen) {
+    if (clicado(btns[6])) {
+        *quadro = BRAD;
+        strcpy(nomeQuadro, "Bradicardia");
+        popupOpen = !popupOpen;
+    } else if (clicado(btns[7])) {
+      *quadro = TAQU;
+      strcpy(nomeQuadro, "Taquicardia");
+      popupOpen = !popupOpen;
+    }
   }
 }
 
@@ -454,135 +486,152 @@ Funções de exibição de telas e janelas
 *****/
 
 void telaMonitor() {
-    janPainel = CriaJanela("Painel", ALT_TELA, LARG_TELA);
-    GanhaFocoJanela(0);
+  janPainel = CriaJanela("Painel", ALT_TELA, LARG_TELA);
+  GanhaFocoJanela(0);
 
-    int timers[2], i;
-    timers[0] = CriaTimer();
-    timers[1] = CriaTimer();
+  int timers[2], i;
+  timers[0] = CriaTimer();
+  timers[1] = CriaTimer();
 
-    int fundoMonitor = CriaObjeto("..//imagens//fundos//fundoMonitor.png",0,255);
-    int fundoPainel = CriaObjeto("..//imagens//fundos//fundoPainel.png",0,255,janPainel);
-    int miniTela = 0;
+  int fundoMonitor = CriaObjeto("..//imagens//fundos//fundoMonitor.png",0,255);
+  int fundoPainel = CriaObjeto("..//imagens//fundos//fundoPainel.png",0,255,janPainel);
+  int miniTela = 0;
 
-    p.sinais[HR].g = inicializaGrafico("normal");
-    p.sinais[BP1].valor = 120;
-    p.sinais[BP2].valor = 80;
-    p.sinais[SPO2].valor = 95;
-    p.sinais[RESP].valor= 20;
-    p.sinais[TEMP].valor= 37;
-    p.quadro = NORMAL;
+  p.sinais[HR].g = inicializaGrafico("normal");
+  p.sinais[BP1].valor = 120;
+  p.sinais[BP2].valor = 80;
+  p.sinais[SPO2].valor = 95;
+  p.sinais[RESP].valor= 20;
+  p.sinais[TEMP].valor= 37;
+  p.quadro = NORMAL;
 
-    p.sinais[HR].timerGrafico = CriaTimer();
+  p.sinais[HR].timerGrafico = CriaTimer();
 
-    fntPainel = CriaFonteNormal("..//fontes//Carlito.ttf", 18, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
-    int fntPainelG = CriaFonteNormal("..//fontes//Carlito.ttf", 25, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
+  fntPainel = CriaFonteNormal("..//fontes//Carlito.ttf", 18, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
+  int fntPainelG = CriaFonteNormal("..//fontes//Carlito.ttf", 25, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
 
-    int btns[5], tInicio = 0, tDuracao = 0;
+  int btns[8], tInicio = 0, tDuracao = 0, quadro = BRAD;
+  char nomeQuadro[20] = "Bradicardia";
 
-    btns[0] = CriaObjeto("..//imagens//btns//btnAgendar.png",0,255,janPainel);
-    MoveObjeto(btns[0], 824, 56);
-    btns[1] = CriaObjeto("..//imagens//btns//btnMais.png",0,255,janPainel);
-    MoveObjeto(btns[1], 305, 80);
-    btns[2] = CriaObjeto("..//imagens//btns//btnMenos.png",0,255,janPainel);
-    MoveObjeto(btns[2], 337, 80);
-    btns[3] = CriaObjeto("..//imagens//btns//btnMais.png",0,255,janPainel);
-    MoveObjeto(btns[3], 585, 80);
-    btns[4] = CriaObjeto("..//imagens//btns//btnMenos.png",0,255,janPainel);
-    MoveObjeto(btns[4], 617, 80);
+  btns[0] = CriaObjeto("..//imagens//btns//btnAgendar.png",0,255,janPainel);
+  MoveObjeto(btns[0], 824, 56);
+  btns[1] = CriaObjeto("..//imagens//btns//btnMais.png",0,255,janPainel);
+  MoveObjeto(btns[1], 305, 80);
+  btns[2] = CriaObjeto("..//imagens//btns//btnMenos.png",0,255,janPainel);
+  MoveObjeto(btns[2], 337, 80);
+  btns[3] = CriaObjeto("..//imagens//btns//btnMais.png",0,255,janPainel);
+  MoveObjeto(btns[3], 585, 80);
+  btns[4] = CriaObjeto("..//imagens//btns//btnMenos.png",0,255,janPainel);
+  MoveObjeto(btns[4], 617, 80);
+  btns[5] = CriaObjeto("..//imagens//btns//btnPopup.png",0,255,janPainel);
+  MoveObjeto(btns[5], 524, 131);
+  btns[6] = CriaObjeto("..//imagens//btns//btnBrad.png", 0 ,255, janPainel);
+  MoveObjeto(btns[6], 170, 162);
+  btns[7] = CriaObjeto("..//imagens//btns//btnTaqu.png", 0 ,255, janPainel);
+  MoveObjeto(btns[7], 170, 192);
 
-    char idade[4], diasInter[10], sexo[2];
-    sprintf(idade, "%d", p.idade);
-    sprintf(diasInter, "%d", p.diasInter);
-    sprintf(sexo, "%c", p.sexo);
+  char idade[4], diasInter[10], sexo[2];
+  sprintf(idade, "%d", p.idade);
+  sprintf(diasInter, "%d", p.diasInter);
+  sprintf(sexo, "%c", p.sexo);
 
-    //Criação dos timers
-    timerIniSim = CriaTimer();
-    timerDurSim = CriaTimer();
+  //Criação dos timers
+  timerIniSim = CriaTimer();
+  timerDurSim = CriaTimer();
 
-    while (JogoRodando() && TELA == tMonitor) {
+  PlayAudio(sons[NORMAL]);
 
-      evento = GetEvento();
+  while (JogoRodando() && TELA == tMonitor) {
 
-      IniciaDesenho();
+    evento = GetEvento();
 
-        //Tela Painel
+    IniciaDesenho();
 
-        DesenhaObjeto(fundoPainel);
+      //Tela Painel
 
-        //Escrevendo os dados do paciente
-        EscreverEsquerda(p.nome, 160, 717, fntPainel);
-        EscreverEsquerda(idade, 160, 681, fntPainel);
-        EscreverEsquerda(diasInter, 420, 681, fntPainel);
-        EscreverEsquerda(sexo, 540, 681, fntPainel);
-        EscreverEsquerda(p.quartoLeito, 740, 681, fntPainel);
-        EscreverEsquerda(p.diagMed, 278, 642, fntPainel);
-        EscreverEsquerda(p.diagEnf, 324, 604, fntPainel);
-        EscreverEsquerda(p.evolucao, 304, 568, fntPainel);
-
-        //Painel Fila de agendamento
-        imprimirFilaAgendamento();
-
-        // Painel de agendamento
-        for (i=0; i < 5; i++) {
-          DesenhaObjeto(btns[i]);
-        }
-        controlePainelAgendamento(&tDuracao, &tInicio, btns);
-        char *dur, *ini;
-        dur = converterSegMin(tDuracao);
-        ini = converterSegMin(tInicio);
-        EscreverEsquerda(dur,528,85,fntPainel);
-        EscreverEsquerda(ini,243,85,fntPainel);
-
-        //Painel quadro atual
-        switch (p.quadro) {
-          case NORMAL: {
-            EscreverEsquerda("Normal", 710, 375, fntPainelG);
-            break;
-          }
-          case QD2: {
-            EscreverEsquerda("Bradicardia", 696, 375, fntPainelG);
-            char *aux;
-            aux = converterSegMin(filaAgd->dur - TempoDecorrido(timerDurSim));
-            EscreverEsquerda(aux,745,260,fntPainelG);
-            break;
-          }
-        }
+      DesenhaObjeto(fundoPainel);
 
         //Painel monitoramento
-        if (miniTela != 0)
-          DesenhaObjeto(miniTela);
+      if (miniTela != 0)
+        DesenhaObjeto(miniTela);
 
-        //Tela Monitor
-        DesenhaObjeto(fundoMonitor);
+      //Escrevendo os dados do paciente
+      EscreverEsquerda(p.nome, 160, 717, fntPainel);
+      EscreverEsquerda(idade, 160, 681, fntPainel);
+      EscreverEsquerda(diasInter, 420, 681, fntPainel);
+      EscreverEsquerda(sexo, 540, 681, fntPainel);
+      EscreverEsquerda(p.quartoLeito, 740, 681, fntPainel);
+      EscreverEsquerda(p.diagMed, 278, 642, fntPainel);
+      EscreverEsquerda(p.diagEnf, 324, 604, fntPainel);
+      EscreverEsquerda(p.evolucao, 304, 568, fntPainel);
 
-        desenhaGrafico(p.sinais[HR].g, 765, AZUL_PISCINA);
-        moveGrafico(p.sinais[HR].g, p.sinais[HR].timerGrafico, 0.3, 5);
+      //Painel Fila de agendamento
+      imprimirFilaAgendamento();
 
-        escreverSinaisVitais();
-
-        controleAgd();
-
-        gerarBatimentos();
-
-        //char fps[20];
-        //sprintf(fps,"%.0f",GetFPS());
-        //EscreverEsquerda(fps,0,0,fntBp);
-
-        if (TempoDecorrido(timers[1]) >= 0.5) {
-          SalvaTela("telaAtual.bmp");
-          DestroiObjeto(miniTela);
-          miniTela = CriaObjeto(".//telaAtual.bmp",0,255,janPainel);
-          SetDimensoesObjeto(miniTela,253,490);
-          MoveObjeto(miniTela,62,217);
-          ReiniciaTimer(timers[1]);
+      // Painel de agendamento
+      for (i=0; i < 6; i++) {
+        DesenhaObjeto(btns[i]);
+      }
+      if (popupOpen) {
+        for (i=6; i < 8; i++) {
+          DesenhaObjeto(btns[i]);
         }
+      }
 
-        desenhaBarra(timers[0]);
+      controlePainelAgendamento(&tDuracao, &tInicio, btns, &quadro, nomeQuadro);
+      char *dur, *ini;
+      dur = converterSegMin(tDuracao);
+      ini = converterSegMin(tInicio);
+      EscreverEsquerda(dur,528,85,fntPainel);
+      EscreverEsquerda(ini,243,85,fntPainel);
+      EscreverEsquerda(nomeQuadro,187,135,fntPainel);
 
-      EncerraDesenho();
+      //Painel quadro atual
+      if (p.quadro == NORMAL) {
+        EscreverEsquerda("Normal", 710, 375, fntPainelG);
+        if (filaAgd != NULL) {
+          char *aux;
+          aux = converterSegMin(filaAgd->ti - TempoDecorrido(timerIniSim));
+          EscreverEsquerda(aux,745,260,fntPainelG);
+        }
+      } else {
+        char *aux;
+        EscreverEsquerda(filaAgd->nomeQdr, 696, 375, fntPainelG);
+        aux = converterSegMin(filaAgd->dur - TempoDecorrido(timerDurSim));
+        EscreverEsquerda(aux,745,260,fntPainelG);
+      }
 
-    }
+      //Tela Monitor
+      DesenhaObjeto(fundoMonitor);
+
+      //Desenho dos gráficos
+      desenhaGrafico(p.sinais[HR].g, 765, AZUL_PISCINA);
+      moveGrafico(p.sinais[HR].g, p.sinais[HR].timerGrafico, 0.3, 5);
+
+      escreverSinaisVitais();
+
+      controleAgd();
+
+      gerarBatimentos();
+
+      //char fps[20];
+      //sprintf(fps,"%.0f",GetFPS());
+      //EscreverEsquerda(fps,0,0,fntBp);
+
+      if (TempoDecorrido(timers[1]) >= 0.5) {
+        SalvaTela("telaAtual.bmp");
+        DestroiObjeto(miniTela);
+        miniTela = CriaObjeto(".//telaAtual.bmp",0,255,janPainel);
+        SetDimensoesObjeto(miniTela,253,490);
+        MoveObjeto(miniTela,62,217);
+        ReiniciaTimer(timers[1]);
+      }
+
+      desenhaBarra(timers[0]);
+
+    EncerraDesenho();
+
+  }
 }
 
 void telaEntrada() {
@@ -617,11 +666,11 @@ void telaFormulario() {
   inputs[0] = criarCaixadeTexto(187,668,40,860,50);
   inputs[1] = criarCaixadeTexto(1174,668,40,65,3,1);
   inputs[2] = criarCaixadeTexto(1378,668,40,50,1);
-  inputs[3] = criarCaixadeTexto(90,549,37,1349,50);
-  inputs[4] = criarCaixadeTexto(90,431,37,1350,50);
+  inputs[3] = criarCaixadeTexto(90,549,37,1349,90);
+  inputs[4] = criarCaixadeTexto(90,431,37,1350,90);
   inputs[5] = criarCaixadeTexto(362,356,37,70,4,1);
   inputs[6] = criarCaixadeTexto(665,356,37,134,20);
-  inputs[7] = criarCaixadeTexto(448,149,151,991,100);
+  inputs[7] = criarCaixadeTexto(448,149,151,991,90);
 
 
   while (JogoRodando() && TELA == tFormulario) {
@@ -662,6 +711,11 @@ int main( int argc, char* args[] ) {
     CriaJogo("Monitor ECG",0,ALT_TELA,LARG_TELA);
 
     meuTeclado = GetTeclado();
+
+    //Criação dos audios
+    sons[NORMAL] = CriaAudio("..//audios//normal.mp3", 1000, 0);
+    sons[BRAD] = CriaAudio("..//audios//brad.mp3", 1000, 0);
+    sons[TAQU] = CriaAudio("..//audios//taqu.mp3", 1000, 0);
 
     //Criação das fontes
     fntHr = CriaFonteNormal("..//fontes//Carlito.ttf", 120, AZUL_PISCINA, 0, AZUL_PISCINA, ESTILO_NORMAL);
