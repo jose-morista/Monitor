@@ -17,6 +17,7 @@ Definições e enumerações
 #define NORMAL 0
 #define BRAD 1
 #define TAQU 2
+#define INFA 3
 
 //enumeração dos sinais vitais
 enum sinaisVitais{HR, BP1, BP2, SPO2, RESP, TEMP};
@@ -32,7 +33,6 @@ typedef struct CaixadeTexto {
   char *texto;
 }CaixadeTexto;
 
-
 typedef struct agendamento {
   int qdr, ti, dur;
   char nomeQdr[20];
@@ -45,7 +45,7 @@ typedef struct grafico {
 } Grafico;
 
 typedef struct sinalVital {
-  int valor, timerGrafico;
+  int valor, timerGrafico, timerValor;
   Grafico *g;
 }sinalVital;
 
@@ -327,6 +327,10 @@ void controleGraficos() {
       p.sinais[HR].g = inicializaGrafico("taquicardia");
       break;
     }
+    case INFA: {
+      p.sinais[HR].g = inicializaGrafico("infarto");
+      break;
+    }
   }
 }
 
@@ -345,6 +349,11 @@ void controleSons() {
     case TAQU: {
       StopTudoAudio();
       PlayAudio(sons[TAQU]);
+      break;
+    }
+    case INFA: {
+      StopTudoAudio();
+      PlayAudio(sons[INFA]);
       break;
     }
   }
@@ -415,6 +424,7 @@ Funções valores ECG
 
 int gerarBatimentos()
 {
+  if(TempoDecorrido(p.sinais[HR].timerValor) > 0.2) {
     srand(time(NULL));
     int aleat = rand();
     switch(p.quadro)
@@ -435,6 +445,8 @@ int gerarBatimentos()
             break;
         }
     }
+    ReiniciaTimer(p.sinais[HR].timerValor);
+  }
 }
 
 void controlePainelAgendamento( int *dur, int *ini, int *btns, int *quadro, char *nomeQuadro) {
@@ -448,7 +460,6 @@ void controlePainelAgendamento( int *dur, int *ini, int *btns, int *quadro, char
     filaAgd = pushAgendamento(filaAgd, *quadro, tInicio, tDuracao, nomeQuadro);
     *dur = 0;
     *ini = 0;
-    ReiniciaTimer(timerIniSim);
   } else if (clicado(btns[1])) {
     *ini = (*ini) + 30;
   } else if (clicado(btns[2])) {
@@ -476,6 +487,10 @@ void controlePainelAgendamento( int *dur, int *ini, int *btns, int *quadro, char
     } else if (clicado(btns[7])) {
       *quadro = TAQU;
       strcpy(nomeQuadro, "Taquicardia");
+      popupOpen = !popupOpen;
+    } else if (clicado(btns[8])) {
+      *quadro = INFA;
+      strcpy(nomeQuadro, "Infarto");
       popupOpen = !popupOpen;
     }
   }
@@ -506,11 +521,12 @@ void telaMonitor() {
   p.quadro = NORMAL;
 
   p.sinais[HR].timerGrafico = CriaTimer();
+  p.sinais[HR].timerValor = CriaTimer();
 
   fntPainel = CriaFonteNormal("..//fontes//Carlito.ttf", 18, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
   int fntPainelG = CriaFonteNormal("..//fontes//Carlito.ttf", 25, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
 
-  int btns[8], tInicio = 0, tDuracao = 0, quadro = BRAD;
+  int btns[9], tInicio = 0, tDuracao = 0, quadro = BRAD;
   char nomeQuadro[20] = "Bradicardia";
 
   btns[0] = CriaObjeto("..//imagens//btns//btnAgendar.png",0,255,janPainel);
@@ -529,6 +545,8 @@ void telaMonitor() {
   MoveObjeto(btns[6], 170, 162);
   btns[7] = CriaObjeto("..//imagens//btns//btnTaqu.png", 0 ,255, janPainel);
   MoveObjeto(btns[7], 170, 192);
+  btns[8] = CriaObjeto("..//imagens//btns//btnInfa.png", 0 ,255, janPainel);
+  MoveObjeto(btns[8], 170, 222);
 
   char idade[4], diasInter[10], sexo[2];
   sprintf(idade, "%d", p.idade);
@@ -573,7 +591,7 @@ void telaMonitor() {
         DesenhaObjeto(btns[i]);
       }
       if (popupOpen) {
-        for (i=6; i < 8; i++) {
+        for (i=6; i < 9; i++) {
           DesenhaObjeto(btns[i]);
         }
       }
@@ -670,7 +688,7 @@ void telaFormulario() {
   inputs[4] = criarCaixadeTexto(90,431,37,1350,90);
   inputs[5] = criarCaixadeTexto(362,356,37,70,4,1);
   inputs[6] = criarCaixadeTexto(665,356,37,134,20);
-  inputs[7] = criarCaixadeTexto(448,149,151,991,90);
+  inputs[7] = criarCaixadeTexto(448,263,37,991,90);
 
 
   while (JogoRodando() && TELA == tFormulario) {
@@ -716,6 +734,7 @@ int main( int argc, char* args[] ) {
     sons[NORMAL] = CriaAudio("..//audios//normal.mp3", 1000, 0);
     sons[BRAD] = CriaAudio("..//audios//brad.mp3", 1000, 0);
     sons[TAQU] = CriaAudio("..//audios//taqu.mp3", 1000, 0);
+    sons[INFA] = CriaAudio("..//audios//taqu.mp3", 1000, 0);
 
     //Criação das fontes
     fntHr = CriaFonteNormal("..//fontes//Carlito.ttf", 120, AZUL_PISCINA, 0, AZUL_PISCINA, ESTILO_NORMAL);
