@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1540263670 source:c:\users\zeze\documents\dev\enfermagem\monitor\src\main.cpp
+1550346662 source:c:\users\zeze\documents\dev\enfermagem\monitor\src\main.cpp
 	"PIG.h"
 
-1534803512 c:\users\zeze\documents\dev\enfermagem\monitor\include\pig.h
+1534807112 c:\users\zeze\documents\dev\enfermagem\monitor\include\pig.h
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -26,7 +26,7 @@
 	"CGerenciadorControles.h"
 	"CJogo.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -58,12 +58,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_main.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_stdinc.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -92,34 +92,34 @@
 	<stdlib.h>
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_config.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_config.h
 	"SDL_platform.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_platform.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\begin_code.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\begin_code.h
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\close_code.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\close_code.h
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_assert.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_atomic.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	<mbarrier.h>
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_audio.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -129,24 +129,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_error.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_endian.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_mutex.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_thread.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -157,18 +157,18 @@
 	<stdlib.h>
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_rwops.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_clipboard.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_cpuinfo.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -181,7 +181,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_events.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -195,7 +195,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_video.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -203,13 +203,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_pixels.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_pixels.h
 	"SDL_stdinc.h"
 	"SDL_endian.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_rect.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -217,7 +217,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_surface.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -226,11 +226,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_blendmode.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_keyboard.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -238,27 +238,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_keycode.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_scancode.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_scancode.h
 	"SDL_stdinc.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_mouse.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_joystick.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_gamecontroller.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -266,11 +266,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_quit.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_gesture.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -278,60 +278,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_touch.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_filesystem.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_haptic.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_hints.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_loadso.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_log.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_messagebox.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_power.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_render.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_shape.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_shape.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -340,7 +340,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_system.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -348,33 +348,33 @@
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_timer.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1508786982 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_version.h
+1508790582 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1376156544 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_ttf.h
+1376160144 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1376141916 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl_image\sdl_image.h
+1376145516 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl_image\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
 
-1534804267 c:\users\zeze\documents\dev\enfermagem\monitor\include\tipos_pig.h
+1534807867 c:\users\zeze\documents\dev\enfermagem\monitor\include\tipos_pig.h
 
-1422933083 c:\users\zeze\documents\dev\enfermagem\monitor\include\cpoolnumeros.h
+1422936683 c:\users\zeze\documents\dev\enfermagem\monitor\include\cpoolnumeros.h
 
-1508772788 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_mixer.h
+1508776388 c:\users\zeze\documents\dev\enfermagem\monitor\include\sdl\sdl_mixer.h
 	"SDL_stdinc.h"
 	"SDL_rwops.h"
 	"SDL_audio.h"
@@ -383,55 +383,55 @@
 	"begin_code.h"
 	"close_code.h"
 
-1527820865 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadorjanelas.h
+1527824465 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadorjanelas.h
 	"CJanela.h"
 
-1528333785 c:\users\zeze\documents\dev\enfermagem\monitor\include\cjanela.h
+1528337385 c:\users\zeze\documents\dev\enfermagem\monitor\include\cjanela.h
 
-1523822057 c:\users\zeze\documents\dev\enfermagem\monitor\include\cassetloader.h
+1523825657 c:\users\zeze\documents\dev\enfermagem\monitor\include\cassetloader.h
 
-1528333785 c:\users\zeze\documents\dev\enfermagem\monitor\include\cmapacaracteres.h
+1528337385 c:\users\zeze\documents\dev\enfermagem\monitor\include\cmapacaracteres.h
 	"COffscreenRenderer.h"
 
-1527827044 c:\users\zeze\documents\dev\enfermagem\monitor\include\coffscreenrenderer.h
+1527830644 c:\users\zeze\documents\dev\enfermagem\monitor\include\coffscreenrenderer.h
 	"CPilhaCoordenada.h"
 
-1453511117 c:\users\zeze\documents\dev\enfermagem\monitor\include\cpilhacoordenada.h
+1453514717 c:\users\zeze\documents\dev\enfermagem\monitor\include\cpilhacoordenada.h
 
-1527276561 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadorobjetos.h
+1527280161 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadorobjetos.h
 	"CObjeto.h"
 
-1527269643 c:\users\zeze\documents\dev\enfermagem\monitor\include\cobjeto.h
+1527273243 c:\users\zeze\documents\dev\enfermagem\monitor\include\cobjeto.h
 
-1472006838 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadortimers.h
+1472010438 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadortimers.h
 	"CTimer.h"
 
-1471471855 c:\users\zeze\documents\dev\enfermagem\monitor\include\ctimer.h
+1471475455 c:\users\zeze\documents\dev\enfermagem\monitor\include\ctimer.h
 
-1523827544 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadoraudios.h
+1523831144 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadoraudios.h
 	"CAudio.h"
 
-1525307543 c:\users\zeze\documents\dev\enfermagem\monitor\include\caudio.h
+1525311143 c:\users\zeze\documents\dev\enfermagem\monitor\include\caudio.h
 
-1528333785 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadorparticulas.h
+1528337385 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadorparticulas.h
 	"CGeradorParticulas.h"
 
-1528333785 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgeradorparticulas.h
+1528337385 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgeradorparticulas.h
 	"CParticula.h"
 
-1527269533 c:\users\zeze\documents\dev\enfermagem\monitor\include\cparticula.h
+1527273133 c:\users\zeze\documents\dev\enfermagem\monitor\include\cparticula.h
 
-1527269702 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadoranimacoes.h
+1527273302 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadoranimacoes.h
 	"CAnimacao.h"
 
-1527269771 c:\users\zeze\documents\dev\enfermagem\monitor\include\canimacao.h
+1527273371 c:\users\zeze\documents\dev\enfermagem\monitor\include\canimacao.h
 
-1527266495 c:\users\zeze\documents\dev\enfermagem\monitor\include\cmouse.h
+1527270095 c:\users\zeze\documents\dev\enfermagem\monitor\include\cmouse.h
 
-1527382844 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadorcontroles.h
+1527386444 c:\users\zeze\documents\dev\enfermagem\monitor\include\cgerenciadorcontroles.h
 	"CControle.h"
 
-1527382844 c:\users\zeze\documents\dev\enfermagem\monitor\include\ccontrole.h
+1527386444 c:\users\zeze\documents\dev\enfermagem\monitor\include\ccontrole.h
 
-1528334334 c:\users\zeze\documents\dev\enfermagem\monitor\include\cjogo.h
+1528337934 c:\users\zeze\documents\dev\enfermagem\monitor\include\cjogo.h
 

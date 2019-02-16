@@ -50,7 +50,7 @@ typedef struct sinalVital {
 }sinalVital;
 
 typedef struct Paciente {
-  char nome[50], diagMed[50], diagEnf[50], quartoLeito[20], sexo, evolucao[100];
+  char nome[50], diagMed[50], diagEnf[50], quartoLeito[20], sexo;
   int idade, diasInter;
   int quadro;
   sinalVital sinais[6];
@@ -581,7 +581,6 @@ void telaMonitor() {
       EscreverEsquerda(p.quartoLeito, 740, 681, fntPainel);
       EscreverEsquerda(p.diagMed, 278, 642, fntPainel);
       EscreverEsquerda(p.diagEnf, 324, 604, fntPainel);
-      EscreverEsquerda(p.evolucao, 304, 568, fntPainel);
 
       //Painel Fila de agendamento
       imprimirFilaAgendamento();
@@ -678,17 +677,16 @@ void telaFormulario() {
   int fundoFormulario = CriaObjeto("../imagens//fundos//fundoFormulario.png",0);
   int btnIniciar = CriaObjeto("../imagens//btns//btnIniciar.png",0);
   MoveObjeto(btnIniciar, 1378, 48);
-  int numCaixasdeTexto = 8, i;
+  int numCaixasdeTexto = 7, i;
 
   CaixadeTexto **inputs = (CaixadeTexto**)malloc(numCaixasdeTexto*sizeof(CaixadeTexto*));
   inputs[0] = criarCaixadeTexto(187,668,40,860,50);
   inputs[1] = criarCaixadeTexto(1174,668,40,65,3,1);
   inputs[2] = criarCaixadeTexto(1378,668,40,50,1);
-  inputs[3] = criarCaixadeTexto(90,549,37,1349,90);
-  inputs[4] = criarCaixadeTexto(90,431,37,1350,90);
+  inputs[3] = criarCaixadeTexto(90,549,37,957,50);
+  inputs[4] = criarCaixadeTexto(90,431,37,957,50);
   inputs[5] = criarCaixadeTexto(362,356,37,70,4,1);
   inputs[6] = criarCaixadeTexto(665,356,37,134,20);
-  inputs[7] = criarCaixadeTexto(448,263,37,991,90);
 
 
   while (JogoRodando() && TELA == tFormulario) {
@@ -711,7 +709,6 @@ void telaFormulario() {
               sprintf(p.diagEnf,"%s", inputs[4]->texto);
               p.diasInter = atoi(inputs[5]->texto);
               sprintf(p.quartoLeito,"%s", inputs[6]->texto);
-              sprintf(p.evolucao,"%s", inputs[7]->texto);
               TELA = tMonitor;
           }
 
