@@ -435,3 +435,439 @@
 
 1528337934 c:\users\zeze\documents\dev\enfermagem\monitor\include\cjogo.h
 
+1553022818 source:c:\users\josem\documents\dev\enfermagem\monitor\src\main.cpp
+	"PIG.h"
+
+1534803514 c:\users\josem\documents\dev\enfermagem\monitor\include\pig.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<time.h>
+	"SDL.h"
+	"SDL_ttf.h"
+	"SDL_image.h"
+	"Tipos_PIG.h"
+	"CPoolNumeros.h"
+	"SDL_mixer.h"
+	"CGerenciadorJanelas.h"
+	"CAssetLoader.h"
+	"CMapaCaracteres.h"
+	"CGerenciadorObjetos.h"
+	"CGerenciadorTimers.h"
+	"CGerenciadorAudios.h"
+	"CGerenciadorParticulas.h"
+	"CGerenciadorAnimacoes.h"
+	"CMouse.h"
+	"CGerenciadorControles.h"
+	"CJogo.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<sal.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_config.h
+	"SDL_platform.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\begin_code.h
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\close_code.h
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<mbarrier.h>
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1508786982 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1376156544 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1376141916 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl_image\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1534804268 c:\users\josem\documents\dev\enfermagem\monitor\include\tipos_pig.h
+
+1422933084 c:\users\josem\documents\dev\enfermagem\monitor\include\cpoolnumeros.h
+
+1508772788 c:\users\josem\documents\dev\enfermagem\monitor\include\sdl\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1527820866 c:\users\josem\documents\dev\enfermagem\monitor\include\cgerenciadorjanelas.h
+	"CJanela.h"
+
+1528333786 c:\users\josem\documents\dev\enfermagem\monitor\include\cjanela.h
+
+1523822058 c:\users\josem\documents\dev\enfermagem\monitor\include\cassetloader.h
+
+1528333786 c:\users\josem\documents\dev\enfermagem\monitor\include\cmapacaracteres.h
+	"COffscreenRenderer.h"
+
+1527827046 c:\users\josem\documents\dev\enfermagem\monitor\include\coffscreenrenderer.h
+	"CPilhaCoordenada.h"
+
+1453511118 c:\users\josem\documents\dev\enfermagem\monitor\include\cpilhacoordenada.h
+
+1527276562 c:\users\josem\documents\dev\enfermagem\monitor\include\cgerenciadorobjetos.h
+	"CObjeto.h"
+
+1527269644 c:\users\josem\documents\dev\enfermagem\monitor\include\cobjeto.h
+
+1472006840 c:\users\josem\documents\dev\enfermagem\monitor\include\cgerenciadortimers.h
+	"CTimer.h"
+
+1471471856 c:\users\josem\documents\dev\enfermagem\monitor\include\ctimer.h
+
+1523827546 c:\users\josem\documents\dev\enfermagem\monitor\include\cgerenciadoraudios.h
+	"CAudio.h"
+
+1525307544 c:\users\josem\documents\dev\enfermagem\monitor\include\caudio.h
+
+1528333786 c:\users\josem\documents\dev\enfermagem\monitor\include\cgerenciadorparticulas.h
+	"CGeradorParticulas.h"
+
+1528333786 c:\users\josem\documents\dev\enfermagem\monitor\include\cgeradorparticulas.h
+	"CParticula.h"
+
+1527269534 c:\users\josem\documents\dev\enfermagem\monitor\include\cparticula.h
+
+1527269704 c:\users\josem\documents\dev\enfermagem\monitor\include\cgerenciadoranimacoes.h
+	"CAnimacao.h"
+
+1527269772 c:\users\josem\documents\dev\enfermagem\monitor\include\canimacao.h
+
+1527266496 c:\users\josem\documents\dev\enfermagem\monitor\include\cmouse.h
+
+1527382846 c:\users\josem\documents\dev\enfermagem\monitor\include\cgerenciadorcontroles.h
+	"CControle.h"
+
+1527382846 c:\users\josem\documents\dev\enfermagem\monitor\include\ccontrole.h
+
+1528334336 c:\users\josem\documents\dev\enfermagem\monitor\include\cjogo.h
+

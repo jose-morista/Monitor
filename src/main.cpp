@@ -1,10 +1,10 @@
 #include "PIG.h"
 
 /*****
-Definições e enumerações
+Definiï¿½ï¿½es e enumeraï¿½ï¿½es
 *****/
 
-//Definições de cores adicionais
+//Definiï¿½ï¿½es de cores adicionais
 #define AZUL_PISCINA ((PIG_Cor){108,255,255,255})
 #define VERMELHO_SANGUE ((PIG_Cor){178,0,0,255})
 #define VERDE_ESCURO ((PIG_Cor){35,140,0,255})
@@ -13,13 +13,13 @@ Definições e enumerações
 #define CINZA_ESCURO ((PIG_Cor){49,49,49,255})
 #define CINZA_CLARO ((PIG_Cor) {240,240,240,255})
 
-//Definições dos possíveis quadros
+//Definiï¿½ï¿½es dos possï¿½veis quadros
 #define NORMAL 0
 #define BRAD 1
 #define TAQU 2
-#define INFA 3
+#define ASSI 3
 
-//enumeração dos sinais vitais
+//enumeraï¿½ï¿½o dos sinais vitais
 enum sinaisVitais{HR, BP1, BP2, SPO2, RESP, TEMP};
 
 enum telas{tFormulario, tMonitor, tEntrada};
@@ -57,7 +57,7 @@ typedef struct Paciente {
 }Paciente;
 
 /*****
-Variáveis globais
+Variï¿½veis globais
 *****/
 
 PIG_Evento evento;
@@ -83,11 +83,11 @@ int janPainel;
 //Audios
 int sons[5];
 
-//Variáveis de controle
+//Variï¿½veis de controle
 int popupOpen = 0;
 
 /*****
-Funções de manipulção das estruturas de dados
+Funï¿½ï¿½es de manipulï¿½ï¿½o das estruturas de dados
 *****/
 
 
@@ -209,7 +209,7 @@ Agendamento *popAgendamento(Agendamento *l) {
 }
 
 /*****
-Funções de manipulação dos gráficos
+Funï¿½ï¿½es de manipulaï¿½ï¿½o dos grï¿½ficos
 *****/
 
 void moveGrafico(Grafico *g,int timer,float tmp,int desloc) {
@@ -262,7 +262,7 @@ Grafico *inicializaGrafico(char *nomearq)
 
 
 /*****
-Funções auxiliares
+Funï¿½ï¿½es auxiliares
 *****/
 
 //Imprimir valores dos sinais vitais
@@ -327,8 +327,8 @@ void controleGraficos() {
       p.sinais[HR].g = inicializaGrafico("taquicardia");
       break;
     }
-    case INFA: {
-      p.sinais[HR].g = inicializaGrafico("infarto");
+    case ASSI: {
+      p.sinais[HR].g = inicializaGrafico("assistolia");
       break;
     }
   }
@@ -351,9 +351,9 @@ void controleSons() {
       PlayAudio(sons[TAQU]);
       break;
     }
-    case INFA: {
+    case ASSI: {
       StopTudoAudio();
-      PlayAudio(sons[INFA]);
+      PlayAudio(sons[ASSI]);
       break;
     }
   }
@@ -419,7 +419,7 @@ void imprimirFilaAgendamento() {
 };
 
 /*****
-Funções valores ECG
+Funï¿½ï¿½es valores ECG
 *****/
 
 int gerarBatimentos()
@@ -429,20 +429,25 @@ int gerarBatimentos()
     int aleat = rand();
     switch(p.quadro)
     {
-    case NORMAL:
+      case NORMAL:
         {
-            p.sinais[HR].valor =(aleat % 40) + 60;
-            break;
+          p.sinais[HR].valor = (aleat % 40) + 60;
+          break;
         }
-    case BRAD :
+      case BRAD:
         {
-            p.sinais[HR].valor =(aleat % 10) + 60;
-            break;
+          p.sinais[HR].valor = (aleat % 10) + 60;
+          break;
         }
-    case TAQU :
+      case TAQU:
         {
-            p.sinais[HR].valor =(aleat % 40) + 120;
-            break;
+          p.sinais[HR].valor = (aleat % 40) + 120;
+          break;
+        }
+      case ASSI:
+        {
+          p.sinais[HR].valor = 0;
+          break;
         }
     }
     ReiniciaTimer(p.sinais[HR].timerValor);
@@ -489,7 +494,7 @@ void controlePainelAgendamento( int *dur, int *ini, int *btns, int *quadro, char
       strcpy(nomeQuadro, "Taquicardia");
       popupOpen = !popupOpen;
     } else if (clicado(btns[8])) {
-      *quadro = INFA;
+      *quadro = ASSI;
       strcpy(nomeQuadro, "Infarto");
       popupOpen = !popupOpen;
     }
@@ -497,7 +502,7 @@ void controlePainelAgendamento( int *dur, int *ini, int *btns, int *quadro, char
 }
 
 /*****
-Funções de exibição de telas e janelas
+Funï¿½ï¿½es de exibiï¿½ï¿½o de telas e janelas
 *****/
 
 void telaMonitor() {
@@ -553,7 +558,7 @@ void telaMonitor() {
   sprintf(diasInter, "%d", p.diasInter);
   sprintf(sexo, "%c", p.sexo);
 
-  //Criação dos timers
+  //Criaï¿½ï¿½o dos timers
   timerIniSim = CriaTimer();
   timerDurSim = CriaTimer();
 
@@ -621,7 +626,7 @@ void telaMonitor() {
       //Tela Monitor
       DesenhaObjeto(fundoMonitor);
 
-      //Desenho dos gráficos
+      //Desenho dos grï¿½ficos
       desenhaGrafico(p.sinais[HR].g, 765, AZUL_PISCINA);
       moveGrafico(p.sinais[HR].g, p.sinais[HR].timerGrafico, 0.3, 5);
 
@@ -727,13 +732,13 @@ int main( int argc, char* args[] ) {
 
     meuTeclado = GetTeclado();
 
-    //Criação dos audios
+    //Criaï¿½ï¿½o dos audios
     sons[NORMAL] = CriaAudio("..//audios//normal.mp3", 1000, 0);
     sons[BRAD] = CriaAudio("..//audios//brad.mp3", 1000, 0);
     sons[TAQU] = CriaAudio("..//audios//taqu.mp3", 1000, 0);
-    sons[INFA] = CriaAudio("..//audios//taqu.mp3", 1000, 0);
+    sons[ASSI] = CriaAudio("..//audios//taqu.mp3", 1000, 0);
 
-    //Criação das fontes
+    //Criaï¿½ï¿½o das fontes
     fntHr = CriaFonteNormal("..//fontes//Carlito.ttf", 120, AZUL_PISCINA, 0, AZUL_PISCINA, ESTILO_NORMAL);
     fntBp = CriaFonteNormal("..//fontes//Carlito.ttf", 80, VERMELHO_SANGUE, 0, VERMELHO_SANGUE, ESTILO_NORMAL);
     fntSpo2 = CriaFonteNormal("..//fontes//Carlito.ttf", 95, VERDE_ESCURO, 0, VERDE_ESCURO, ESTILO_NORMAL);
