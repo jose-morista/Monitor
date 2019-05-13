@@ -495,7 +495,7 @@ void controlePainelAgendamento( int *dur, int *ini, int *btns, int *quadro, char
       popupOpen = !popupOpen;
     } else if (clicado(btns[8])) {
       *quadro = ASSI;
-      strcpy(nomeQuadro, "Infarto");
+      strcpy(nomeQuadro, "Assistolia");
       popupOpen = !popupOpen;
     }
   }
