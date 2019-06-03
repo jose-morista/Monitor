@@ -64,9 +64,12 @@ PIG_Evento evento;
 PIG_Teclado meuTeclado;
 
 int TELA= tEntrada;
+int telaCheia = 1;
 
 //Fila de agendamento
 Agendamento *filaAgd=NULL;
+Agendamento *historico=NULL;
+
 
 //Paciente
 Paciente p;
@@ -408,7 +411,7 @@ void imprimirFilaAgendamento() {
   }
 
   while (aux!=NULL) {
-    char agd[20];
+    char agd[50];
     sprintf(agd, "%s TI: %s DUR: %s", aux->nomeQdr, converterSegMin(aux->ti), converterSegMin(aux->dur));
     EscreverEsquerda(agd, 1063, (730-(numAgd * 35)), fntPainel);
     DesenhaLinhaSimples(1053,(730 -(numAgd * 35) - 8), 1465,(730-(numAgd * 35) - 8), PRETO, janPainel);
@@ -463,6 +466,7 @@ void controlePainelAgendamento( int *dur, int *ini, int *btns, int *quadro, char
       ReiniciaTimer(timerIniSim);
     }
     filaAgd = pushAgendamento(filaAgd, *quadro, tInicio, tDuracao, nomeQuadro);
+    historico = pushAgendamento(historico, *quadro, tInicio, tDuracao, nomeQuadro);
     *dur = 0;
     *ini = 0;
   } else if (clicado(btns[1])) {
@@ -507,15 +511,19 @@ Fun��es de exibi��o de telas e janelas
 
 void telaMonitor() {
   janPainel = CriaJanela("Painel", ALT_TELA, LARG_TELA);
-  GanhaFocoJanela(0);
+  SDL_RenderSetLogicalSize(CGerenciadorJanelas::GetJanela(janPainel)->GetRenderer(), LARG_TELA, ALT_TELA);
+  SetModoJanela(JANELA_TELACHEIA_DISPLAY,janPainel);
+
+  int btnFechar = CriaObjeto("..//imagens//btns/btnFechar.png", 0 ,255, janPainel);
+  MoveObjeto(btnFechar, 1570, 870);
 
   int timers[2], i;
   timers[0] = CriaTimer();
   timers[1] = CriaTimer();
 
+  int posPainelx = 0, posPainely = 0;
   int fundoMonitor = CriaObjeto("..//imagens//fundos//fundoMonitor.png",0,255);
   int fundoPainel = CriaObjeto("..//imagens//fundos//fundoPainel.png",0,255,janPainel);
-  int miniTela = 0;
 
   p.sinais[HR].g = inicializaGrafico("normal");
   p.sinais[BP1].valor = 120;
@@ -530,6 +538,7 @@ void telaMonitor() {
 
   fntPainel = CriaFonteNormal("..//fontes//Carlito.ttf", 18, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
   int fntPainelG = CriaFonteNormal("..//fontes//Carlito.ttf", 25, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
+  int fntPainelS = CriaFonteNormal("..//fontes//Carlito.ttf", 14, VERMELHO, 0, AZUL_PISCINA, ESTILO_NEGRITO,janPainel);
 
   int btns[9], tInicio = 0, tDuracao = 0, quadro = BRAD;
   char nomeQuadro[20] = "Bradicardia";
@@ -563,20 +572,50 @@ void telaMonitor() {
   timerDurSim = CriaTimer();
 
   PlayAudio(sons[NORMAL]);
+  int numAgd = 0;
+  Agendamento *aux = historico;
 
   while (JogoRodando() && TELA == tMonitor) {
 
     evento = GetEvento();
 
+
+    if (evento.tipoEvento==EVENTO_TECLADO&&evento.teclado.acao==TECLA_PRESSIONADA){
+        if (evento.teclado.tecla == TECLA_F7) {
+          telaCheia = !telaCheia;
+          if (telaCheia==1){
+            SetModoJanela(JANELA_TELACHEIA_DISPLAY,0);
+            SetModoJanela(JANELA_TELACHEIA_DISPLAY, janPainel);
+          }else{
+            SetModoJanela(JANELA_NORMAL,0);
+            SetModoJanela(JANELA_NORMAL, janPainel);
+            SetPosicaoJanela(50, 50, janPainel);
+            SetPosicaoJanela(50, 50);
+          }
+        }
+      }
     IniciaDesenho();
 
       //Tela Painel
-
       DesenhaObjeto(fundoPainel);
+      DesenhaObjeto(btnFechar);
+      if (clicado(btnFechar)) {
+        FinalizaJogo();
+      }
 
-        //Painel monitoramento
-      if (miniTela != 0)
-        DesenhaObjeto(miniTela);
+      numAgd = 0;
+      aux = historico;
+      while (aux!=NULL) {
+        char agd[50];
+        sprintf(agd, "%d:%s-%s-%s", (numAgd + 1), aux->nomeQdr, converterSegMin(aux->ti), converterSegMin(aux->dur));
+        if (numAgd >= 12) {
+          EscreverEsquerda(agd, 310, (443-((numAgd - 12) * 20)), fntPainelS);
+        } else {
+          EscreverEsquerda(agd, 80, (443-(numAgd * 20)), fntPainelS);
+        }
+        numAgd++;
+        aux = aux->prox;
+      }
 
       //Escrevendo os dados do paciente
       EscreverEsquerda(p.nome, 160, 717, fntPainel);
@@ -640,15 +679,6 @@ void telaMonitor() {
       //sprintf(fps,"%.0f",GetFPS());
       //EscreverEsquerda(fps,0,0,fntBp);
 
-      if (TempoDecorrido(timers[1]) >= 0.5) {
-        SalvaTela("telaAtual.bmp");
-        DestroiObjeto(miniTela);
-        miniTela = CriaObjeto(".//telaAtual.bmp",0,255,janPainel);
-        SetDimensoesObjeto(miniTela,253,490);
-        MoveObjeto(miniTela,62,217);
-        ReiniciaTimer(timers[1]);
-      }
-
       desenhaBarra(timers[0]);
 
     EncerraDesenho();
@@ -658,6 +688,8 @@ void telaMonitor() {
 
 void telaEntrada() {
   int fundoEntrada = CriaObjeto("../imagens//fundos//fundoEntrada.png",0);
+  int btnFechar = CriaObjeto("..//imagens//btns/btnFechar.png", 0 ,255);
+  MoveObjeto(btnFechar, 1570, 870);
   int timerEntrada = CriaTimer();
   float t;
 
@@ -672,6 +704,10 @@ void telaEntrada() {
     }
     IniciaDesenho();
       DesenhaObjeto(fundoEntrada);
+      DesenhaObjeto(btnFechar);
+      if (clicado(btnFechar)) {
+        FinalizaJogo();
+      }
     EncerraDesenho();
   }
 
@@ -681,6 +717,8 @@ void telaFormulario() {
 
   int fundoFormulario = CriaObjeto("../imagens//fundos//fundoFormulario.png",0);
   int btnIniciar = CriaObjeto("../imagens//btns//btnIniciar.png",0);
+  int btnFechar = CriaObjeto("..//imagens//btns/btnFechar.png", 0 ,255);
+  MoveObjeto(btnFechar, 1570, 870);
   MoveObjeto(btnIniciar, 1378, 48);
   int numCaixasdeTexto = 7, i;
 
@@ -697,7 +735,6 @@ void telaFormulario() {
   while (JogoRodando() && TELA == tFormulario) {
 
       evento = GetEvento();
-
       IniciaDesenho();
         DesenhaObjeto(fundoFormulario);
         DesenhaObjeto(btnIniciar);
@@ -716,7 +753,10 @@ void telaFormulario() {
               sprintf(p.quartoLeito,"%s", inputs[6]->texto);
               TELA = tMonitor;
           }
-
+          DesenhaObjeto(btnFechar);
+          if (clicado(btnFechar)) {
+            FinalizaJogo();
+          }
       EncerraDesenho();
 
     }
@@ -730,13 +770,17 @@ int main( int argc, char* args[] ) {
 
     CriaJogo("Monitor ECG",0,ALT_TELA,LARG_TELA);
 
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");//usar "best" ou "linear"
+    //cria um sistema de coordenadas lógicas, usando a altura e largura definidas para a janela
+    SDL_RenderSetLogicalSize(CGerenciadorJanelas::GetJanela(0)->GetRenderer(), LARG_TELA, ALT_TELA);
+    SetModoJanela(JANELA_TELACHEIA_DISPLAY,0);
     meuTeclado = GetTeclado();
 
     //Cria��o dos audios
-    sons[NORMAL] = CriaAudio("..//audios//normal.mp3", 1000, 0);
-    sons[BRAD] = CriaAudio("..//audios//brad.mp3", 1000, 0);
-    sons[TAQU] = CriaAudio("..//audios//taqu.mp3", 1000, 0);
-    sons[ASSI] = CriaAudio("..//audios//taqu.mp3", 1000, 0);
+    sons[NORMAL] = CriaAudio("..//audios//normal.mp3", -1, 0);
+    sons[BRAD] = CriaAudio("..//audios//brad.mp3", -1, 0);
+    sons[TAQU] = CriaAudio("..//audios//taqu.mp3", -1, 0);
+    sons[ASSI] = CriaAudio("..//audios//assis.mp3", -1, 0);
 
     //Cria��o das fontes
     fntHr = CriaFonteNormal("..//fontes//Carlito.ttf", 120, AZUL_PISCINA, 0, AZUL_PISCINA, ESTILO_NORMAL);
@@ -762,6 +806,5 @@ int main( int argc, char* args[] ) {
         }
       }
     }
-
     return 0;
 }
