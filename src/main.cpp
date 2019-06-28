@@ -675,9 +675,9 @@ void telaMonitor() {
 
       gerarBatimentos();
 
-      //char fps[20];
-      //sprintf(fps,"%.0f",GetFPS());
-      //EscreverEsquerda(fps,0,0,fntBp);
+      /*char fps[20];
+      sprintf(fps,"%.0f",GetFPS());
+      EscreverEsquerda(fps,0,0,fntBp);*/
 
       desenhaBarra(timers[0]);
 
@@ -806,5 +806,8 @@ int main( int argc, char* args[] ) {
         }
       }
     }
+
+
+
     return 0;
 }
