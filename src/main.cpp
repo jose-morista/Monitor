@@ -94,16 +94,17 @@ Fun��es de manipul��o das estruturas de dados
 *****/
 
 
-CaixadeTexto *criarCaixadeTexto(int x,int y,int alt,int larg,int tamMax, int numerico = 0) {
-  CaixadeTexto *novo = (CaixadeTexto*)malloc(sizeof(CaixadeTexto));
-  novo->x=x;
-  novo->y=y;
-  novo->alt=alt;
-  novo->larg=larg;
-  novo->sel=0;
-  novo->numerico=numerico;
-  novo->tamMax=tamMax;
-  novo->texto= "";
+CaixadeTexto criarCaixadeTexto(int x,int y,int alt,int larg,int tamMax, int numerico = 0) {
+  CaixadeTexto novo;// = (CaixadeTexto*)malloc(sizeof(CaixadeTexto));
+  novo.x=x;
+  novo.y=y;
+  novo.alt=alt;
+  novo.larg=larg;
+  novo.sel=0;
+  novo.numerico=numerico;
+  novo.tamMax=tamMax;
+  novo.texto= (char*)malloc(tamMax+1); // Aloca a string e sempre a usa diretamente
+  novo.texto[0] = '\0';
   return novo;
 }
 
@@ -116,29 +117,31 @@ int CaixadeTextoClicada(int x,int y,int alt,int larg) {
   return 0;
 }
 
-void selecionarCaixadeTexto(CaixadeTexto **inputs, int numInputs) {
+void selecionarCaixadeTexto(CaixadeTexto inputs[], int numInputs) {
   if (evento.mouse.acao==MOUSE_PRESSIONADO && evento.mouse.botao==MOUSE_ESQUERDO) {
     int i;
     for (i=0;i<numInputs;i++) {
-      inputs[i]->sel = CaixadeTextoClicada(inputs[i]->x,inputs[i]->y,inputs[i]->alt,inputs[i]->larg);
+      inputs[i].sel = CaixadeTextoClicada(inputs[i].x,inputs[i].y,inputs[i].alt,inputs[i].larg);
     }
   }
 }
 
-char *getinput(CaixadeTexto *input) {
-  char *texto = (char*)malloc(sizeof(char)*input->tamMax);
-  sprintf(texto,"");
-  if (input->texto!=NULL) {
-    sprintf(texto,"%s",input->texto);
-    free(input->texto);
-  }
+char *getinput(CaixadeTexto input) {
+  char* texto = input.texto;
+  // EDIT: desnecessario ficar alocando mais memoria, basta usar direto a string da caixa de texto
+  //char *texto = (char*)malloc(sizeof(char)*input->tamMax);
+  //sprintf(texto,"");
+  //if (input->texto!=NULL) {
+  //  sprintf(texto,"%s",input->texto);
+  //  free(input->texto);
+  //}
   if (evento.tipoEvento==EVENTO_TECLADO & evento.teclado.acao==TECLA_PRESSIONADA) {
     int i = evento.teclado.tecla;
-    if (strlen(texto)<input->tamMax) {
-      if (i>=TECLA_a && i<=TECLA_z && !input->numerico) {
+    if (strlen(texto)<input.tamMax) {
+      if (i>=TECLA_a && i<=TECLA_z && !input.numerico) {
         i =i + 'a' - TECLA_a;
         sprintf(texto,"%s%c",texto,i);
-      } else if (i==TECLA_BARRAESPACO && !input->numerico) {
+      } else if (i==TECLA_BARRAESPACO && !input.numerico) {
         sprintf(texto,"%s ",texto);
       } else if (i>=TECLA_1 && i<= TECLA_0) {
         if (i!= TECLA_0)
@@ -155,24 +158,24 @@ char *getinput(CaixadeTexto *input) {
       }
     }
     if (i==TECLA_BACKSPACE && strlen(texto)>0) {
-      char *aux = (char*)malloc(sizeof(char)*input->tamMax);
-      strncpy(aux,texto,(strlen(texto)-1));
-      aux[strlen(texto)-1]='\0';
-      strcpy(texto,aux);
-      free(aux);
+      //char *aux = (char*)malloc(sizeof(char)*input->tamMax);
+      //strncpy(aux,texto,(strlen(texto)-1));
+      texto[strlen(texto)-1]='\0';
+      //strcpy(texto,aux);
+      //free(aux);
     }
   }
   return texto;
 }
 
-void desenhaCaixadeTexto(CaixadeTexto *input) {
-  DesenhaRetanguloVazado(input->x,input->y,input->alt,input->larg,CINZA);
-  if (input->sel) {
-    DesenhaRetanguloVazado(input->x,input->y,input->alt,input->larg,AZUL);
-    input->texto = getinput(input);
+void desenhaCaixadeTexto(CaixadeTexto input) {
+  DesenhaRetanguloVazado(input.x,input.y,input.alt,input.larg,CINZA);
+  if (input.sel) {
+    DesenhaRetanguloVazado(input.x,input.y,input.alt,input.larg,AZUL);
+    input.texto = getinput(input);
   }
-  if (input->texto!=NULL)
-    EscreverEsquerda(input->texto,input->x+3,input->y+input->alt-30,fntForm);
+  if (input.texto!=NULL)
+    EscreverEsquerda(input.texto,input.x+3,input.y+input.alt-30,fntForm);
 }
 
 Grafico *pushPonto(Grafico *l,int x,int y) {
@@ -188,7 +191,7 @@ Grafico *pushPonto(Grafico *l,int x,int y) {
   }
 }
 
-Agendamento *pushAgendamento(Agendamento *l,int quadro,int tempo_ini,int duracao, char *nomeQdr) {
+Agendamento *pushAgendamento(Agendamento *l,int quadro,int tempo_ini,int duracao, const char *nomeQdr) {
   if (l==NULL) {
     Agendamento *novo = (Agendamento*)malloc(sizeof(Agendamento));
     novo->dur=duracao;
@@ -243,7 +246,7 @@ void desenhaGrafico(Grafico *l,int posy,SDL_Color cor)
     }
 }
 
-Grafico *inicializaGrafico(char *nomearq)
+Grafico *inicializaGrafico(const char *nomearq)
 {
     Grafico *g=NULL;
     char caminho[50];
@@ -288,9 +291,10 @@ void escreverSinaisVitais()
     EscreverEsquerda(aux2,1225,132,fntTemp);
 }
 
-char* converterSegMin(int segundos)
+char* converterSegMin(int segundos, char* aux)
 {
-    char *aux = (char*)malloc(sizeof(10));
+    // EDIT: usar string pre-alocada
+    //char *aux = (char*)malloc(sizeof(10));
     int minutos=0;
     minutos = segundos/60;
     segundos = segundos % 60;
@@ -338,6 +342,9 @@ void controleGraficos() {
 }
 
 void controleSons() {
+      StopTudoAudio();
+      PlayAudio(sons[p.quadro]);
+/* EDIT: Aqui foi possivel simplificar bastante
   switch (p.quadro) {
     case NORMAL: {
       StopTudoAudio();
@@ -359,7 +366,7 @@ void controleSons() {
       PlayAudio(sons[ASSI]);
       break;
     }
-  }
+  }*/
 }
 
 //Controlador de agendamentos
@@ -412,7 +419,8 @@ void imprimirFilaAgendamento() {
 
   while (aux!=NULL) {
     char agd[50];
-    sprintf(agd, "%s TI: %s DUR: %s", aux->nomeQdr, converterSegMin(aux->ti), converterSegMin(aux->dur));
+    char ti[10], dur[10]; // EDIT: strings para usar na funcao convertesSegMin
+    sprintf(agd, "%s TI: %s DUR: %s", aux->nomeQdr, converterSegMin(aux->ti, ti), converterSegMin(aux->dur, dur));
     EscreverEsquerda(agd, 1063, (730-(numAgd * 35)), fntPainel);
     DesenhaLinhaSimples(1053,(730 -(numAgd * 35) - 8), 1465,(730-(numAgd * 35) - 8), PRETO, janPainel);
     numAgd++;
@@ -607,7 +615,8 @@ void telaMonitor() {
       aux = historico;
       while (aux!=NULL) {
         char agd[50];
-        sprintf(agd, "%d:%s-%s-%s", (numAgd + 1), aux->nomeQdr, converterSegMin(aux->ti), converterSegMin(aux->dur));
+	char ti[10], dur[10];
+        sprintf(agd, "%d:%s-%s-%s", (numAgd + 1), aux->nomeQdr, converterSegMin(aux->ti, ti), converterSegMin(aux->dur, dur));
         if (numAgd >= 12) {
           EscreverEsquerda(agd, 310, (443-((numAgd - 12) * 20)), fntPainelS);
         } else {
@@ -640,9 +649,9 @@ void telaMonitor() {
       }
 
       controlePainelAgendamento(&tDuracao, &tInicio, btns, &quadro, nomeQuadro);
-      char *dur, *ini;
-      dur = converterSegMin(tDuracao);
-      ini = converterSegMin(tInicio);
+      char dur[10], ini[10];
+      converterSegMin(tDuracao, dur);
+      converterSegMin(tInicio, ini);
       EscreverEsquerda(dur,528,85,fntPainel);
       EscreverEsquerda(ini,243,85,fntPainel);
       EscreverEsquerda(nomeQuadro,187,135,fntPainel);
@@ -651,14 +660,14 @@ void telaMonitor() {
       if (p.quadro == NORMAL) {
         EscreverEsquerda("Normal", 710, 375, fntPainelG);
         if (filaAgd != NULL) {
-          char *aux;
-          aux = converterSegMin(filaAgd->ti - TempoDecorrido(timerIniSim));
+          char aux[10];
+          converterSegMin(filaAgd->ti - TempoDecorrido(timerIniSim), aux);
           EscreverEsquerda(aux,745,260,fntPainelG);
         }
       } else {
-        char *aux;
+        char aux[10];
         EscreverEsquerda(filaAgd->nomeQdr, 696, 375, fntPainelG);
-        aux = converterSegMin(filaAgd->dur - TempoDecorrido(timerDurSim));
+        converterSegMin(filaAgd->dur - TempoDecorrido(timerDurSim), aux);
         EscreverEsquerda(aux,745,260,fntPainelG);
       }
 
@@ -722,7 +731,8 @@ void telaFormulario() {
   MoveObjeto(btnIniciar, 1378, 48);
   int numCaixasdeTexto = 7, i;
 
-  CaixadeTexto **inputs = (CaixadeTexto**)malloc(numCaixasdeTexto*sizeof(CaixadeTexto*));
+  //CaixadeTexto **inputs = (CaixadeTexto**)malloc(numCaixasdeTexto*sizeof(CaixadeTexto*));
+  CaixadeTexto inputs[numCaixasdeTexto];
   inputs[0] = criarCaixadeTexto(187,668,40,860,50);
   inputs[1] = criarCaixadeTexto(1174,668,40,65,3,1);
   inputs[2] = criarCaixadeTexto(1378,668,40,50,1);
@@ -744,13 +754,13 @@ void telaFormulario() {
               desenhaCaixadeTexto(inputs[i]);
           }
           if (clicado(btnIniciar)) {
-              sprintf(p.nome,"%s", inputs[0]->texto);
-              p.idade = atoi(inputs[1]->texto);
-              p.sexo = inputs[2]->texto[0];
-              sprintf(p.diagMed,"%s", inputs[3]->texto);
-              sprintf(p.diagEnf,"%s", inputs[4]->texto);
-              p.diasInter = atoi(inputs[5]->texto);
-              sprintf(p.quartoLeito,"%s", inputs[6]->texto);
+              sprintf(p.nome,"%s", inputs[0].texto);
+              p.idade = atoi(inputs[1].texto);
+              p.sexo = inputs[2].texto[0];
+              sprintf(p.diagMed,"%s", inputs[3].texto);
+              sprintf(p.diagEnf,"%s", inputs[4].texto);
+              p.diasInter = atoi(inputs[5].texto);
+              sprintf(p.quartoLeito,"%s", inputs[6].texto);
               TELA = tMonitor;
           }
           DesenhaObjeto(btnFechar);
